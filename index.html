@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<<<<<<< HEAD
 <title>Narendra Reddy — AI/ML Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -261,11 +262,96 @@ footer span{background:linear-gradient(135deg,#FF6B6B,#A78BFA);-webkit-backgroun
   nav{padding:0 20px;}
   .section,.hero,.pd-wrap{padding-left:20px;padding-right:20px;}
   .contact-sec{padding:60px 20px;}
+=======
+<title>Narendra Mangunuru — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#0F1117;color:#F5F5F0;min-height:100vh;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+
+/* HERO */
+.hero{padding:64px 32px 52px;text-align:center;position:relative;}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;color:#4ADE80;letter-spacing:0.12em;margin-bottom:20px;text-transform:uppercase;}
+.hero-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(40px,8vw,72px);font-weight:700;line-height:1.05;letter-spacing:-0.03em;color:#F5F5F0;margin-bottom:16px;}
+.hero-name span{color:#4ADE80;}
+.hero-tagline{font-size:17px;color:#9AA0A6;max-width:500px;margin:0 auto 40px;line-height:1.65;}
+
+/* TICKER */
+.ticker-wrap{overflow:hidden;width:100%;padding:14px 0;border-top:1px solid #1E2130;border-bottom:1px solid #1E2130;margin-bottom:44px;}
+.ticker-track{display:flex;gap:32px;width:max-content;animation:ticker 32s linear infinite;}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.ticker-item{font-family:'JetBrains Mono',monospace;font-size:12px;color:#4ADE80;white-space:nowrap;display:flex;align-items:center;gap:8px;}
+.ticker-item::before{content:'▸';color:#2A6644;font-size:10px;}
+
+/* BUTTONS */
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;background:#4ADE80;color:#0F1117;border:none;padding:12px 30px;border-radius:8px;cursor:pointer;letter-spacing:0.01em;text-decoration:none;display:inline-block;}
+.btn-primary:hover{background:#22C55E;}
+.btn-ghost{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:500;background:transparent;color:#F5F5F0;border:1px solid #2A2D3E;padding:12px 30px;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block;}
+.btn-ghost:hover{border-color:#4ADE80;color:#4ADE80;}
+
+/* SECTIONS */
+.section{padding:52px 32px;max-width:920px;margin:0 auto;}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:#4ADE80;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:12px;}
+.section-label::after{content:'';flex:1;height:1px;background:#1E2130;}
+
+/* ABOUT */
+.about-text{font-size:17px;line-height:1.8;color:#C8CDD2;max-width:700px;}
+.about-text strong{color:#F5F5F0;font-weight:500;}
+
+/* EXPERIENCE */
+.exp-list{display:flex;flex-direction:column;gap:16px;}
+.exp-card{background:#1E2130;border:1px solid #2A2D3E;border-radius:12px;padding:26px 30px;position:relative;overflow:hidden;}
+.exp-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:#4ADE80;border-radius:3px 0 0 3px;}
+.exp-company{font-family:'Space Grotesk',sans-serif;font-size:13px;color:#4ADE80;font-weight:600;margin-bottom:6px;letter-spacing:0.04em;text-transform:uppercase;}
+.exp-card-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
+.exp-role{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;color:#F5F5F0;}
+.exp-dates{font-family:'JetBrains Mono',monospace;font-size:12px;color:#6B7280;white-space:nowrap;padding-top:4px;}
+.exp-desc{font-size:14px;line-height:1.7;color:#9AA0A6;margin-bottom:16px;}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:#4ADE80;background:#0A1F14;padding:4px 10px;border-radius:20px;border:1px solid #1A4A2A;}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.proj-card{background:#1E2130;border:1px solid #2A2D3E;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:10px;transition:border-color 0.2s;}
+.proj-card:hover{border-color:#4ADE80;}
+.proj-title{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;color:#F5F5F0;}
+.proj-desc{font-size:13px;line-height:1.65;color:#9AA0A6;flex:1;}
+.proj-link{font-family:'JetBrains Mono',monospace;font-size:12px;color:#4ADE80;display:flex;align-items:center;gap:5px;}
+.proj-link:hover{color:#22C55E;}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+.skill-group{background:#1E2130;border:1px solid #2A2D3E;border-radius:10px;padding:18px 20px;}
+.skill-group-title{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:#F5F5F0;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.skill-dot{width:7px;height:7px;border-radius:50%;background:#4ADE80;flex-shrink:0;}
+.skill-items{display:flex;flex-wrap:wrap;gap:6px;}
+.skill-chip{font-family:'JetBrains Mono',monospace;font-size:11px;color:#9AA0A6;background:#0D1117;padding:4px 9px;border-radius:4px;}
+
+/* CONTACT */
+.contact-strip{background:#1E2130;border-top:1px solid #2A2D3E;padding:52px 32px;text-align:center;}
+.contact-strip h3{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;color:#F5F5F0;margin-bottom:10px;}
+.contact-strip p{font-size:15px;color:#9AA0A6;margin-bottom:28px;}
+.contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.contact-link{font-family:'JetBrains Mono',monospace;font-size:13px;color:#4ADE80;display:flex;align-items:center;gap:7px;padding:11px 20px;border:1px solid #2A2D3E;border-radius:8px;transition:all 0.2s;}
+.contact-link:hover{border-color:#4ADE80;background:#0A1F14;}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .hero{padding:48px 20px 40px;}
+  .section{padding:40px 20px;}
+  .exp-card{padding:20px;}
+  .contact-strip{padding:40px 20px;}
+>>>>>>> 27f63ed968bd7f0e6c72533b8b8959709fc666d7
 }
 </style>
 </head>
 <body>
 
+<<<<<<< HEAD
 <nav>
   <div class="nav-logo" onclick="showPage('home')">NR.</div>
   <div class="nav-links">
@@ -329,10 +415,35 @@ footer span{background:linear-gradient(135deg,#FF6B6B,#A78BFA);-webkit-backgroun
       <div class="comp-card cc6"><div class="comp-icon ci6">🛡️</div><span class="comp-text">LLM Security &amp; Responsible AI</span></div>
     </div>
   </div>
+=======
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Available for new opportunities · Denton, TX (Remote)</div>
+  <h1 class="hero-name">Narendra<br><span>Mangunuru</span></h1>
+  <p class="hero-tagline">Software Engineer specializing in frontend craft, design systems, and full-stack financial applications.</p>
+
+  <div class="ticker-wrap">
+    <div class="ticker-track" id="ticker"></div>
+  </div>
+
+  <div class="cta-row">
+    <a class="btn-primary" href="mailto:narendramangunuru@gmail.com">Hire Me →</a>
+    <a class="btn-ghost" href="#contact">Contact</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section">
+  <div class="section-label">About</div>
+  <p class="about-text">
+    I'm a software engineer with <strong>5+ years</strong> building enterprise-grade web applications — with an equal passion for the design side of the stack. I've spent four years writing <strong>component libraries, design tokens, and interaction patterns</strong> in React and TypeScript at Paychex and QVC, owning the UX quality of financial and e-commerce platforms used by hundreds of thousands of customers. I care deeply about craft: clean, performant code that translates complex workflows into interfaces that feel obvious.
+  </p>
+>>>>>>> 27f63ed968bd7f0e6c72533b8b8959709fc666d7
 </div>
 
 <!-- EXPERIENCE -->
 <div class="section">
+<<<<<<< HEAD
   <div class="sec-eyebrow"><span class="sec-eyebrow-text ec2">Experience</span><div class="sec-eyebrow-line el2"></div></div>
   <h2 class="sec-title">Where I've shipped AI.</h2>
   <div class="exp-list">
@@ -381,11 +492,51 @@ footer span{background:linear-gradient(135deg,#FF6B6B,#A78BFA);-webkit-backgroun
         <li>Created comprehensive test suites with JUnit/Mockito — 90% code coverage, 15% reduction in defect escape rates.</li>
       </ul>
       <div class="tag-row"><span class="tag t3">Java 8</span><span class="tag t3">Python</span><span class="tag t3">Pandas</span><span class="tag t3">NumPy</span><span class="tag t3">Spring MVC</span><span class="tag t3">Oracle DB</span><span class="tag t3">Docker</span></div>
+=======
+  <div class="section-label">Experience</div>
+  <div class="exp-list">
+
+    <div class="exp-card">
+      <div class="exp-company">Paychex</div>
+      <div class="exp-card-top">
+        <div class="exp-role">Software Engineer — Frontend &amp; Full Stack</div>
+        <div class="exp-dates">Dec 2024 – Present</div>
+      </div>
+      <p class="exp-desc">Primary owner of the React/TypeScript frontend layer for enterprise payroll applications serving millions of users. Architected a shared component library used across 6 product teams, led Next.js migration improving FCP by 35%, and collaborated daily with UX designers in Figma to implement design tokens across web and mobile breakpoints.</p>
+      <div class="tag-row">
+        <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Next.js</span><span class="tag">Figma</span><span class="tag">Spring Boot</span><span class="tag">Java 21</span><span class="tag">Kafka</span><span class="tag">AWS</span>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-company">QVC / Qurate Retail Group</div>
+      <div class="exp-card-top">
+        <div class="exp-role">Java Developer — Full Stack &amp; Frontend</div>
+        <div class="exp-dates">Oct 2022 – Nov 2024</div>
+      </div>
+      <p class="exp-desc">Full-stack developer on a high-traffic e-commerce platform with primary ownership of Angular and React component libraries shared across web and mobile. Translated Figma mockups to accessible SPAs with pixel-level accuracy, integrated React Native for iOS/Android surfaces, and optimized API response times by 20%.</p>
+      <div class="tag-row">
+        <span class="tag">Angular 14+</span><span class="tag">React Native</span><span class="tag">TypeScript</span><span class="tag">OAuth 2.0</span><span class="tag">Kubernetes</span><span class="tag">Azure</span><span class="tag">Kafka</span>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-company">Innominds (Client: Napier)</div>
+      <div class="exp-card-top">
+        <div class="exp-role">Associate Software Engineer</div>
+        <div class="exp-dates">Nov 2019 – May 2021</div>
+      </div>
+      <p class="exp-desc">Built multi-tier J2EE applications with Spring MVC and Hibernate ORM. Achieved 90% unit test coverage with JUnit/Mockito, reducing defect escape rates by 15%. Designed Oracle DB schemas and collaborated with frontend teams on RESTful API integrations.</p>
+      <div class="tag-row">
+        <span class="tag">Java 8</span><span class="tag">Spring MVC</span><span class="tag">Hibernate</span><span class="tag">Oracle DB</span><span class="tag">JUnit</span><span class="tag">Maven</span>
+      </div>
+>>>>>>> 27f63ed968bd7f0e6c72533b8b8959709fc666d7
     </div>
 
   </div>
 </div>
 
+<<<<<<< HEAD
 <!-- PROJECTS PREVIEW -->
 <div class="section">
   <div class="sec-eyebrow"><span class="sec-eyebrow-text ec3">Projects</span><div class="sec-eyebrow-line el3"></div></div>
@@ -429,10 +580,40 @@ footer span{background:linear-gradient(135deg,#FF6B6B,#A78BFA);-webkit-backgroun
     </div>
   </div>
   <div style="text-align:center;margin-top:36px;"><div class="btn-outline" style="cursor:pointer;display:inline-block;" onclick="showPage('projects')">All Projects →</div></div>
+=======
+<!-- PROJECTS -->
+<div class="section">
+  <div class="section-label">Projects</div>
+  <div class="proj-grid">
+
+    <div class="proj-card">
+      <div class="proj-title">ChairStore — E-Commerce SPA</div>
+      <p class="proj-desc">Single-page e-commerce app with dynamic product listings, filtering, shopping cart, and checkout. Built as a design-system exercise: modular reusable components, CSS Grid/Flexbox layouts, and React Hooks state management.</p>
+      <div class="tag-row" style="margin-bottom:8px;"><span class="tag">React.js</span><span class="tag">CSS Grid</span><span class="tag">React Hooks</span></div>
+      <a class="proj-link" href="https://github.com/Narendrareddy5c4/ChairStore" target="_blank">github.com/ChairStore ↗</a>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-title">Telecom Churn Prediction</div>
+      <p class="proj-desc">ML pipeline predicting customer churn using Logistic Regression, Decision Tree, and Random Forest classifiers with full EDA, confusion matrix, and ROC-AUC reporting on real telecom data.</p>
+      <div class="tag-row" style="margin-bottom:8px;"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span></div>
+      <a class="proj-link" href="https://github.com/Narendrareddy5c4/Telecom-Customer-Churn" target="_blank">github.com/Telecom-Churn ↗</a>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-title">React Learning Projects</div>
+      <p class="proj-desc">Collection of React apps mastering state management, component architecture, and SPA routing — useState/useEffect hooks, React Router, and responsive UI patterns with modern ES6+ practices.</p>
+      <div class="tag-row" style="margin-bottom:8px;"><span class="tag">React.js</span><span class="tag">React Router</span><span class="tag">Hooks</span></div>
+      <a class="proj-link" href="https://github.com/Narendrareddy5c4/ReactLearning" target="_blank">github.com/ReactLearning ↗</a>
+    </div>
+
+  </div>
+>>>>>>> 27f63ed968bd7f0e6c72533b8b8959709fc666d7
 </div>
 
 <!-- SKILLS -->
 <div class="section">
+<<<<<<< HEAD
   <div class="sec-eyebrow"><span class="sec-eyebrow-text ec4">Skills</span><div class="sec-eyebrow-line el4"></div></div>
   <h2 class="sec-title">My tech stack.</h2>
   <div class="skills-grid">
@@ -728,3 +909,65 @@ function scrollContact(){
 </script>
 </body>
 </html>
+=======
+  <div class="section-label">Skills</div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title"><div class="skill-dot"></div>Frontend</div>
+      <div class="skill-items">
+        <span class="skill-chip">React</span><span class="skill-chip">TypeScript</span><span class="skill-chip">Next.js</span><span class="skill-chip">Angular</span><span class="skill-chip">React Native</span><span class="skill-chip">HTML5</span><span class="skill-chip">CSS3</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><div class="skill-dot"></div>Design Systems</div>
+      <div class="skill-items">
+        <span class="skill-chip">Figma</span><span class="skill-chip">Design Tokens</span><span class="skill-chip">Component Libs</span><span class="skill-chip">Storybook</span><span class="skill-chip">CSS Grid</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><div class="skill-dot"></div>Backend</div>
+      <div class="skill-items">
+        <span class="skill-chip">Java 8–21</span><span class="skill-chip">Spring Boot</span><span class="skill-chip">REST APIs</span><span class="skill-chip">Kafka</span><span class="skill-chip">JWT</span><span class="skill-chip">OAuth 2.0</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><div class="skill-dot"></div>Cloud &amp; Data</div>
+      <div class="skill-items">
+        <span class="skill-chip">GCP</span><span class="skill-chip">BigQuery</span><span class="skill-chip">Firestore</span><span class="skill-chip">AWS</span><span class="skill-chip">Azure</span><span class="skill-chip">Kubernetes</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><div class="skill-dot"></div>Testing &amp; CI/CD</div>
+      <div class="skill-items">
+        <span class="skill-chip">JUnit 5</span><span class="skill-chip">Mockito</span><span class="skill-chip">Jest</span><span class="skill-chip">Jenkins</span><span class="skill-chip">Azure DevOps</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><div class="skill-dot"></div>Education</div>
+      <div class="skill-items">
+        <span class="skill-chip">M.S. Computer Science</span><span class="skill-chip">Univ. of Central Missouri</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-strip" id="contact">
+  <h3>Let's build something great.</h3>
+  <p>Open to senior frontend, full-stack, and design systems engineering roles.</p>
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:narendramangunuru@gmail.com">✉ narendramangunuru@gmail.com</a>
+    <a class="contact-link" href="tel:9133888995">☎ 913-388-8995</a>
+    <a class="contact-link" href="https://linkedin.com/in/narendramangunuru" target="_blank">in LinkedIn ↗</a>
+    <a class="contact-link" href="https://github.com/Narendrareddy5c4" target="_blank">◈ GitHub ↗</a>
+  </div>
+</div>
+
+<script>
+const techs=['React.js','TypeScript','Next.js','React Native','Figma','Java 21','Spring Boot','Kafka','AWS','GCP','BigQuery','Firestore','Kubernetes','Docker','Angular 14+','OAuth 2.0','JUnit 5','Mockito','Python','Scikit-learn','CI/CD','Azure','Terraform','Node.js'];
+const track=document.getElementById('ticker');
+track.innerHTML=[...techs,...techs].map(t=>`<span class="ticker-item">${t}</span>`).join('');
+</script>
+</body>
+</html>
+>>>>>>> 27f63ed968bd7f0e6c72533b8b8959709fc666d7
