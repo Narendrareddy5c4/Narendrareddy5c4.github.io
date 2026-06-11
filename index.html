@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Narendra Reddy — AI/ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:#05070F;color:#F0F2FF;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+
+/* ── PAGES ── */
+.page{display:none;min-height:100vh;}
+.page.active{display:block;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(5,7,15,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.07);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#FF6B6B,#FFE66D,#4ECDC4,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-links{display:flex;gap:6px;}
+.nav-link{font-family:'JetBrains Mono',monospace;font-size:12px;color:#94A3B8;padding:7px 16px;border-radius:20px;cursor:pointer;transition:all 0.25s;border:1px solid transparent;}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.12);}
+.nav-link.active{color:#fff;background:linear-gradient(135deg,rgba(255,107,107,0.25),rgba(167,139,250,0.25));border-color:rgba(167,139,250,0.4);}
+
+/* ── HERO ── */
+.hero{padding:130px 48px 90px;max-width:1100px;margin:0 auto;position:relative;}
+.hero-glow{position:absolute;top:80px;left:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(167,139,250,0.12) 0%,transparent 70%);pointer-events:none;}
+.hero-glow2{position:absolute;top:200px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(78,205,196,0.1) 0%,transparent 70%);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:100px;padding:7px 18px;margin-bottom:36px;}
+.hero-badge-dot{width:9px;height:9px;border-radius:50%;background:#22C55E;box-shadow:0 0 8px #22C55E;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
+.hero-badge-text{font-family:'JetBrains Mono',monospace;font-size:12px;color:#94A3B8;}
+.hero-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(52px,8vw,88px);font-weight:700;line-height:1.0;letter-spacing:-0.03em;margin-bottom:10px;}
+.hero-name .g1{background:linear-gradient(135deg,#FF6B6B,#FFE66D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-name .g2{background:linear-gradient(135deg,#4ECDC4,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-role{font-family:'JetBrains Mono',monospace;font-size:15px;margin-bottom:28px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.role-pill{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:500;font-family:'JetBrains Mono',monospace;}
+.rp1{background:rgba(255,107,107,0.15);color:#FF6B6B;border:1px solid rgba(255,107,107,0.3);}
+.rp2{background:rgba(78,205,196,0.15);color:#4ECDC4;border:1px solid rgba(78,205,196,0.3);}
+.rp3{background:rgba(167,139,250,0.15);color:#A78BFA;border:1px solid rgba(167,139,250,0.3);}
+.hero-desc{font-size:18px;line-height:1.78;color:#94A3B8;max-width:640px;margin-bottom:48px;}
+.hero-desc strong{color:#F0F2FF;font-weight:600;}
+.hero-stats{display:flex;gap:0;margin-bottom:52px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden;width:fit-content;}
+.stat{padding:20px 32px;display:flex;flex-direction:column;gap:5px;border-right:1px solid rgba(255,255,255,0.07);}
+.stat:last-child{border-right:none;}
+.stat-num{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;}
+.sn1{background:linear-gradient(135deg,#FF6B6B,#FFE66D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sn2{background:linear-gradient(135deg,#4ECDC4,#44A8FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sn3{background:linear-gradient(135deg,#A78BFA,#F472B6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sn4{background:linear-gradient(135deg,#FFE66D,#FF6B6B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.stat-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:#64748B;letter-spacing:0.08em;text-transform:uppercase;}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-primary{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;background:linear-gradient(135deg,#FF6B6B,#A78BFA);color:#fff;border:none;padding:14px 36px;border-radius:10px;cursor:pointer;transition:all 0.25s;display:inline-block;box-shadow:0 4px 24px rgba(167,139,250,0.3);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(167,139,250,0.45);}
+.btn-outline{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:500;background:transparent;color:#F0F2FF;border:1px solid rgba(255,255,255,0.15);padding:14px 36px;border-radius:10px;cursor:pointer;transition:all 0.25s;display:inline-block;}
+.btn-outline:hover{border-color:#A78BFA;color:#A78BFA;background:rgba(167,139,250,0.08);}
+
+/* ── TICKER ── */
+.ticker-wrap{overflow:hidden;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);padding:14px 0;background:rgba(255,255,255,0.02);margin:0;}
+.ticker-track{display:flex;gap:0;width:max-content;animation:ticker 38s linear infinite;}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.ticker-item{font-family:'JetBrains Mono',monospace;font-size:12px;white-space:nowrap;padding:0 20px;display:flex;align-items:center;gap:12px;}
+.ticker-item.c1{color:#FF6B6B;} .ticker-item.c2{color:#FFE66D;} .ticker-item.c3{color:#4ECDC4;} .ticker-item.c4{color:#A78BFA;} .ticker-item.c5{color:#F472B6;}
+.ticker-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.2);}
+
+/* ── SECTION ── */
+.section{padding:80px 48px;max-width:1100px;margin:0 auto;}
+.sec-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.sec-eyebrow-text{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;}
+.ec1{color:#FF6B6B;} .ec2{color:#4ECDC4;} .ec3{color:#A78BFA;} .ec4{color:#FFE66D;} .ec5{color:#F472B6;}
+.sec-eyebrow-line{flex:1;height:1px;}
+.el1{background:linear-gradient(90deg,rgba(255,107,107,0.4),transparent);}
+.el2{background:linear-gradient(90deg,rgba(78,205,196,0.4),transparent);}
+.el3{background:linear-gradient(90deg,rgba(167,139,250,0.4),transparent);}
+.el4{background:linear-gradient(90deg,rgba(255,230,109,0.4),transparent);}
+.sec-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:700;color:#F0F2FF;margin-bottom:40px;line-height:1.2;}
+
+/* ── ABOUT ── */
+.about-layout{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:start;}
+.about-body{font-size:16px;line-height:1.85;color:#94A3B8;}
+.about-body strong{color:#F0F2FF;font-weight:600;}
+.about-body p+p{margin-top:18px;}
+.comp-grid{display:flex;flex-direction:column;gap:10px;}
+.comp-card{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:12px;border:1px solid;transition:all 0.25s;cursor:default;}
+.cc1{background:rgba(255,107,107,0.06);border-color:rgba(255,107,107,0.2);}
+.cc2{background:rgba(78,205,196,0.06);border-color:rgba(78,205,196,0.2);}
+.cc3{background:rgba(167,139,250,0.06);border-color:rgba(167,139,250,0.2);}
+.cc4{background:rgba(255,230,109,0.06);border-color:rgba(255,230,109,0.2);}
+.cc5{background:rgba(244,114,182,0.06);border-color:rgba(244,114,182,0.2);}
+.cc6{background:rgba(68,168,255,0.06);border-color:rgba(68,168,255,0.2);}
+.comp-card:hover{transform:translateX(4px);}
+.comp-icon{font-size:18px;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ci1{background:rgba(255,107,107,0.15);} .ci2{background:rgba(78,205,196,0.15);} .ci3{background:rgba(167,139,250,0.15);} .ci4{background:rgba(255,230,109,0.15);} .ci5{background:rgba(244,114,182,0.15);} .ci6{background:rgba(68,168,255,0.15);}
+.comp-text{font-size:13px;color:#CBD5E1;font-weight:500;}
+
+/* ── EXPERIENCE ── */
+.exp-list{display:flex;flex-direction:column;gap:20px;}
+.exp-card{border-radius:16px;padding:28px 32px;border:1px solid;position:relative;overflow:hidden;}
+.exp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.ec-paychex{background:rgba(255,107,107,0.05);border-color:rgba(255,107,107,0.2);}
+.ec-paychex::before{background:linear-gradient(90deg,#FF6B6B,#FFE66D);}
+.ec-qvc{background:rgba(78,205,196,0.05);border-color:rgba(78,205,196,0.2);}
+.ec-qvc::before{background:linear-gradient(90deg,#4ECDC4,#44A8FF);}
+.ec-inn{background:rgba(167,139,250,0.05);border-color:rgba(167,139,250,0.2);}
+.ec-inn::before{background:linear-gradient(90deg,#A78BFA,#F472B6);}
+.exp-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:6px;}
+.exp-company-badge{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;letter-spacing:0.06em;text-transform:uppercase;}
+.eb1{background:rgba(255,107,107,0.15);color:#FF6B6B;border:1px solid rgba(255,107,107,0.3);}
+.eb2{background:rgba(78,205,196,0.15);color:#4ECDC4;border:1px solid rgba(78,205,196,0.3);}
+.eb3{background:rgba(167,139,250,0.15);color:#A78BFA;border:1px solid rgba(167,139,250,0.3);}
+.exp-dates{font-family:'JetBrains Mono',monospace;font-size:12px;color:#64748B;}
+.exp-role{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;color:#F0F2FF;margin-bottom:12px;}
+.exp-desc{font-size:14px;line-height:1.7;color:#94A3B8;margin-bottom:16px;}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:18px;}
+.exp-bullets li{font-size:13px;color:#94A3B8;line-height:1.65;padding-left:18px;position:relative;}
+.exp-bullets li::before{content:'▸';position:absolute;left:0;font-size:11px;top:2px;}
+.b1 li::before{color:#FF6B6B;} .b2 li::before{color:#4ECDC4;} .b3 li::before{color:#A78BFA;}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border-radius:20px;border:1px solid;}
+.t1{color:#FFE66D;background:rgba(255,230,109,0.1);border-color:rgba(255,230,109,0.25);}
+.t2{color:#4ECDC4;background:rgba(78,205,196,0.1);border-color:rgba(78,205,196,0.25);}
+.t3{color:#A78BFA;background:rgba(167,139,250,0.1);border-color:rgba(167,139,250,0.25);}
+
+/* ── PROJECTS ── */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;}
+.proj-card{border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:16px;cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden;border:1px solid;}
+.proj-card::after{content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s;pointer-events:none;}
+.proj-card:hover{transform:translateY(-6px);}
+.proj-card:hover::after{opacity:1;}
+.pc1{background:linear-gradient(145deg,rgba(255,107,107,0.08),rgba(255,230,109,0.05));border-color:rgba(255,107,107,0.25);}
+.pc1::after{background:linear-gradient(145deg,rgba(255,107,107,0.05),rgba(255,230,109,0.03));}
+.pc2{background:linear-gradient(145deg,rgba(78,205,196,0.08),rgba(68,168,255,0.05));border-color:rgba(78,205,196,0.25);}
+.pc2::after{background:linear-gradient(145deg,rgba(78,205,196,0.05),rgba(68,168,255,0.03));}
+.pc3{background:linear-gradient(145deg,rgba(167,139,250,0.08),rgba(244,114,182,0.05));border-color:rgba(167,139,250,0.25);}
+.pc3::after{background:linear-gradient(145deg,rgba(167,139,250,0.05),rgba(244,114,182,0.03));}
+.pc4{background:linear-gradient(145deg,rgba(255,230,109,0.08),rgba(255,107,107,0.05));border-color:rgba(255,230,109,0.25);}
+.pc4::after{background:linear-gradient(145deg,rgba(255,230,109,0.05),rgba(255,107,107,0.03));}
+.proj-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;}
+.pi1{background:linear-gradient(135deg,rgba(255,107,107,0.2),rgba(255,230,109,0.2));}
+.pi2{background:linear-gradient(135deg,rgba(78,205,196,0.2),rgba(68,168,255,0.2));}
+.pi3{background:linear-gradient(135deg,rgba(167,139,250,0.2),rgba(244,114,182,0.2));}
+.pi4{background:linear-gradient(135deg,rgba(255,230,109,0.2),rgba(255,107,107,0.2));}
+.proj-title{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#F0F2FF;}
+.proj-sub{font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:4px;}
+.ps1{color:#FF6B6B;} .ps2{color:#4ECDC4;} .ps3{color:#A78BFA;} .ps4{color:#FFE66D;}
+.proj-desc{font-size:13px;line-height:1.65;color:#94A3B8;flex:1;}
+.proj-metrics{display:flex;gap:20px;flex-wrap:wrap;}
+.pm-val{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;}
+.pm1{background:linear-gradient(135deg,#FF6B6B,#FFE66D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.pm2{background:linear-gradient(135deg,#4ECDC4,#44A8FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.pm3{background:linear-gradient(135deg,#A78BFA,#F472B6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.pm4{background:linear-gradient(135deg,#FFE66D,#FF6B6B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.pm-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:#64748B;text-transform:uppercase;margin-top:2px;}
+.proj-actions{display:flex;gap:8px;margin-top:4px;}
+.btn-sm{font-family:'JetBrains Mono',monospace;font-size:11px;padding:8px 16px;border-radius:8px;cursor:pointer;border:1px solid;transition:all 0.2s;}
+.bsm1{background:linear-gradient(135deg,rgba(255,107,107,0.2),rgba(255,230,109,0.2));color:#FFE66D;border-color:rgba(255,107,107,0.4);}
+.bsm1:hover{background:linear-gradient(135deg,rgba(255,107,107,0.35),rgba(255,230,109,0.35));}
+.bsm2{background:linear-gradient(135deg,rgba(78,205,196,0.2),rgba(68,168,255,0.2));color:#4ECDC4;border-color:rgba(78,205,196,0.4);}
+.bsm2:hover{background:linear-gradient(135deg,rgba(78,205,196,0.35),rgba(68,168,255,0.35));}
+.bsm3{background:linear-gradient(135deg,rgba(167,139,250,0.2),rgba(244,114,182,0.2));color:#A78BFA;border-color:rgba(167,139,250,0.4);}
+.bsm3:hover{background:linear-gradient(135deg,rgba(167,139,250,0.35),rgba(244,114,182,0.35));}
+.bsm4{background:linear-gradient(135deg,rgba(255,230,109,0.2),rgba(255,107,107,0.2));color:#FFE66D;border-color:rgba(255,230,109,0.4);}
+.bsm4:hover{background:linear-gradient(135deg,rgba(255,230,109,0.35),rgba(255,107,107,0.35));}
+.bsm-ghost{background:transparent;color:#64748B;border-color:rgba(255,255,255,0.1);}
+.bsm-ghost:hover{color:#F0F2FF;border-color:rgba(255,255,255,0.25);}
+
+/* ── SKILLS ── */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;}
+.sg{border-radius:14px;padding:22px;border:1px solid;transition:all 0.25s;}
+.sg1{background:rgba(255,107,107,0.05);border-color:rgba(255,107,107,0.18);}
+.sg2{background:rgba(78,205,196,0.05);border-color:rgba(78,205,196,0.18);}
+.sg3{background:rgba(167,139,250,0.05);border-color:rgba(167,139,250,0.18);}
+.sg4{background:rgba(255,230,109,0.05);border-color:rgba(255,230,109,0.18);}
+.sg5{background:rgba(244,114,182,0.05);border-color:rgba(244,114,182,0.18);}
+.sg6{background:rgba(68,168,255,0.05);border-color:rgba(68,168,255,0.18);}
+.sg:hover{transform:translateY(-3px);}
+.sg-title{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.sg-dot{width:7px;height:7px;border-radius:50%;}
+.sd1{background:#FF6B6B;} .sd2{background:#4ECDC4;} .sd3{background:#A78BFA;} .sd4{background:#FFE66D;} .sd5{background:#F472B6;} .sd6{background:#44A8FF;}
+.st1{color:#FF6B6B;} .st2{color:#4ECDC4;} .st3{color:#A78BFA;} .st4{color:#FFE66D;} .st5{color:#F472B6;} .st6{color:#44A8FF;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 9px;border-radius:6px;color:#94A3B8;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);}
+
+/* ── PROJECT DETAIL ── */
+.pd-wrap{padding:100px 48px 72px;max-width:960px;margin:0 auto;}
+.back-btn{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;padding:9px 18px;border-radius:8px;cursor:pointer;margin-bottom:36px;transition:all 0.2s;border:1px solid rgba(255,255,255,0.1);color:#94A3B8;}
+.back-btn:hover{color:#F0F2FF;border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.05);}
+.pd-eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:18px;}
+.pd-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(36px,6vw,60px);font-weight:700;line-height:1.08;color:#F0F2FF;margin-bottom:22px;}
+.pd-desc{font-size:17px;line-height:1.78;color:#94A3B8;max-width:720px;margin-bottom:36px;}
+.pd-stats{display:flex;gap:0;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:14px;overflow:hidden;margin-bottom:36px;width:fit-content;flex-wrap:wrap;}
+.pd-stat{padding:18px 28px;border-right:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;gap:4px;}
+.pd-stat:last-child{border-right:none;}
+.pd-stat-val{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;}
+.pd-stat-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:#64748B;text-transform:uppercase;}
+.pd-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:48px;}
+.pd-section{margin-bottom:52px;}
+.pd-sec-title{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#F0F2FF;margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;}
+.feat{border-radius:12px;padding:20px;border:1px solid;transition:transform 0.2s;}
+.feat:hover{transform:translateY(-3px);}
+.f1{background:rgba(255,107,107,0.06);border-color:rgba(255,107,107,0.2);}
+.f2{background:rgba(78,205,196,0.06);border-color:rgba(78,205,196,0.2);}
+.f3{background:rgba(167,139,250,0.06);border-color:rgba(167,139,250,0.2);}
+.f4{background:rgba(255,230,109,0.06);border-color:rgba(255,230,109,0.2);}
+.f5{background:rgba(244,114,182,0.06);border-color:rgba(244,114,182,0.2);}
+.feat-icon{font-size:22px;margin-bottom:10px;}
+.feat-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#F0F2FF;margin-bottom:7px;}
+.feat-text{font-size:13px;color:#94A3B8;line-height:1.6;}
+.steps{display:flex;flex-direction:column;gap:0;}
+.step{display:flex;gap:20px;padding-bottom:30px;position:relative;}
+.step:not(:last-child)::after{content:'';position:absolute;left:15px;top:34px;bottom:0;width:1px;background:rgba(255,255,255,0.07);}
+.step-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;flex-shrink:0;}
+.sn-a{background:linear-gradient(135deg,#FF6B6B,#FFE66D);color:#05070F;}
+.sn-b{background:linear-gradient(135deg,#4ECDC4,#44A8FF);color:#05070F;}
+.sn-c{background:linear-gradient(135deg,#A78BFA,#F472B6);color:#05070F;}
+.sn-d{background:linear-gradient(135deg,#FFE66D,#FF6B6B);color:#05070F;}
+.step-body{padding-top:4px;}
+.step-title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:#F0F2FF;margin-bottom:7px;}
+.step-text{font-size:13px;color:#94A3B8;line-height:1.68;}
+.code-block{background:#0A0D1A;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#A78BFA;line-height:1.75;overflow-x:auto;margin-top:14px;}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;}
+.res-card{border-radius:12px;padding:20px;text-align:center;border:1px solid;}
+.rc1{background:rgba(255,107,107,0.08);border-color:rgba(255,107,107,0.25);}
+.rc2{background:rgba(78,205,196,0.08);border-color:rgba(78,205,196,0.25);}
+.rc3{background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.25);}
+.rc4{background:rgba(255,230,109,0.08);border-color:rgba(255,230,109,0.25);}
+.res-val{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;}
+.rv1{background:linear-gradient(135deg,#FF6B6B,#FFE66D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.rv2{background:linear-gradient(135deg,#4ECDC4,#44A8FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.rv3{background:linear-gradient(135deg,#A78BFA,#F472B6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.rv4{background:linear-gradient(135deg,#FFE66D,#FF6B6B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.res-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:#64748B;margin-top:5px;text-transform:uppercase;}
+
+/* ── CONTACT ── */
+.contact-sec{padding:80px 48px;text-align:center;background:linear-gradient(180deg,rgba(167,139,250,0.04) 0%,rgba(78,205,196,0.04) 100%);border-top:1px solid rgba(255,255,255,0.06);}
+.contact-sec h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(30px,5vw,48px);font-weight:700;margin-bottom:14px;background:linear-gradient(135deg,#FF6B6B,#FFE66D,#4ECDC4,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.contact-sec p{font-size:16px;color:#64748B;margin-bottom:38px;max-width:500px;margin-left:auto;margin-right:auto;}
+.contact-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.cl{font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;align-items:center;gap:8px;padding:13px 22px;border-radius:10px;border:1px solid;transition:all 0.25s;cursor:pointer;}
+.cl1{color:#FF6B6B;border-color:rgba(255,107,107,0.3);background:rgba(255,107,107,0.05);}
+.cl1:hover{background:rgba(255,107,107,0.12);transform:translateY(-2px);}
+.cl2{color:#4ECDC4;border-color:rgba(78,205,196,0.3);background:rgba(78,205,196,0.05);}
+.cl2:hover{background:rgba(78,205,196,0.12);transform:translateY(-2px);}
+.cl3{color:#A78BFA;border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.05);}
+.cl3:hover{background:rgba(167,139,250,0.12);transform:translateY(-2px);}
+.cl4{color:#FFE66D;border-color:rgba(255,230,109,0.3);background:rgba(255,230,109,0.05);}
+.cl4:hover{background:rgba(255,230,109,0.12);transform:translateY(-2px);}
+
+footer{text-align:center;padding:24px;border-top:1px solid rgba(255,255,255,0.05);}
+footer p{font-family:'JetBrains Mono',monospace;font-size:11px;color:#334155;}
+footer span{background:linear-gradient(135deg,#FF6B6B,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+@media(max-width:768px){
+  .about-layout{grid-template-columns:1fr;}
+  .hero-stats{flex-wrap:wrap;width:100%;}
+  .stat{padding:16px 20px;}
+  nav{padding:0 20px;}
+  .section,.hero,.pd-wrap{padding-left:20px;padding-right:20px;}
+  .contact-sec{padding:60px 20px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">NR.</div>
+  <div class="nav-links">
+    <div class="nav-link active" id="nav-home" onclick="showPage('home')">Home</div>
+    <div class="nav-link" id="nav-projects" onclick="showPage('projects')">Projects</div>
+    <div class="nav-link" id="nav-contact" onclick="scrollContact()">Contact</div>
+  </div>
+</nav>
+
+<!-- ═══════════════ HOME ═══════════════ -->
+<div class="page active" id="page-home">
+
+<div class="hero">
+  <div class="hero-glow"></div><div class="hero-glow2"></div>
+  <div class="hero-badge">
+    <div class="hero-badge-dot"></div>
+    <span class="hero-badge-text">Open to opportunities · Irving, TX (Remote-friendly)</span>
+  </div>
+  <h1 class="hero-name">
+    <span class="g1">Narendra</span><br>
+    <span class="g2">Reddy</span>
+  </h1>
+  <div class="hero-role">
+    <span class="role-pill rp1">AI/ML Engineer</span>
+    <span class="role-pill rp2">Generative AI Specialist</span>
+    <span class="role-pill rp3">LLM / RAG Expert</span>
+  </div>
+  <p class="hero-desc">Building <strong>end-to-end ML pipelines</strong>, <strong>LLM-powered RAG applications</strong>, and <strong>agentic workflows</strong> at enterprise scale. 5+ years turning complex data into production AI systems across AWS Bedrock, GCP Vertex AI, and Azure Databricks.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num sn1">5+</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat"><div class="stat-num sn2">40%</div><div class="stat-label">Effort Reduced</div></div>
+    <div class="stat"><div class="stat-num sn3">85%</div><div class="stat-label">ML Accuracy</div></div>
+    <div class="stat"><div class="stat-num sn4">3</div><div class="stat-label">Cloud Platforms</div></div>
+  </div>
+  <div class="cta-row">
+    <a class="btn-primary" href="mailto:narendramangunuru@gmail.com">Hire Me →</a>
+    <div class="btn-outline" onclick="showPage('projects')">View Projects</div>
+  </div>
+</div>
+
+<div class="ticker-wrap"><div class="ticker-track" id="ticker"></div></div>
+
+<!-- ABOUT -->
+<div class="section">
+  <div class="sec-eyebrow"><span class="sec-eyebrow-text ec1">About Me</span><div class="sec-eyebrow-line el1"></div></div>
+  <div class="about-layout">
+    <div>
+      <h2 class="sec-title">AI/ML engineer with a bias for production.</h2>
+      <div class="about-body">
+        <p>I'm an AI/ML Engineer with <strong>5+ years</strong> building enterprise machine learning systems and Generative AI solutions. My work spans the full ML lifecycle — raw data ingestion through deployed, monitored models running at scale.</p>
+        <p>At <strong>Paychex</strong>, I design LLM-powered pipelines with LangChain + RAG, reducing document processing by 35% and improving fraud detection precision by 22%. At <strong>QVC</strong>, I built recommendation engines and NLP categorization systems processing <strong>50M+ records daily</strong>.</p>
+        <p>I treat <strong>responsible AI</strong> as a first-class design constraint — prompt injection guardrails, hallucination reduction, fairness and explainability aren't afterthoughts, they ship with the model.</p>
+      </div>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-card cc1"><div class="comp-icon ci1">🤖</div><span class="comp-text">Generative AI &amp; LLM Engineering</span></div>
+      <div class="comp-card cc2"><div class="comp-icon ci2">🔍</div><span class="comp-text">RAG &amp; Agentic Workflows</span></div>
+      <div class="comp-card cc3"><div class="comp-icon ci3">📊</div><span class="comp-text">ML Pipelines &amp; MLOps</span></div>
+      <div class="comp-card cc4"><div class="comp-icon ci4">⚡</div><span class="comp-text">Big Data — PySpark, Kafka, Hadoop</span></div>
+      <div class="comp-card cc5"><div class="comp-icon ci5">☁️</div><span class="comp-text">AWS Bedrock · GCP Vertex · Azure</span></div>
+      <div class="comp-card cc6"><div class="comp-icon ci6">🛡️</div><span class="comp-text">LLM Security &amp; Responsible AI</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section">
+  <div class="sec-eyebrow"><span class="sec-eyebrow-text ec2">Experience</span><div class="sec-eyebrow-line el2"></div></div>
+  <h2 class="sec-title">Where I've shipped AI.</h2>
+  <div class="exp-list">
+
+    <div class="exp-card ec-paychex">
+      <div class="exp-top">
+        <span class="exp-company-badge eb1">Paychex · Rochester, NY</span>
+        <span class="exp-dates">Dec 2024 – Present</span>
+      </div>
+      <div class="exp-role">AI/ML Engineer — Generative AI &amp; Scalable Systems</div>
+      <p class="exp-desc">Designing end-to-end AI/ML pipelines for classification, anomaly detection, and predictive analytics across high-volume financial datasets.</p>
+      <ul class="exp-bullets b1">
+        <li>Built LLM-powered GenAI solutions using LangChain + RAG for automated claims analysis — GPT &amp; Gemini APIs with enterprise data, reducing processing turnaround by 35%.</li>
+        <li>Developed multi-agent agentic workflows with LangGraph for complex financial reasoning; implemented prompt injection guardrails and hallucination reduction.</li>
+        <li>Deployed containerized AI/ML models on AWS Bedrock, SageMaker &amp; GCP Vertex AI with MLFlow versioning, drift analysis, and automated retraining pipelines.</li>
+        <li>Built PySpark + Kafka pipelines processing millions of financial transactions; integrated Snowflake for analytics — reduced manual review effort 40%, fraud detection precision +22%.</li>
+      </ul>
+      <div class="tag-row"><span class="tag t1">Python</span><span class="tag t1">LangChain</span><span class="tag t1">LangGraph</span><span class="tag t1">RAG</span><span class="tag t1">PySpark</span><span class="tag t1">AWS Bedrock</span><span class="tag t1">GCP Vertex AI</span><span class="tag t1">MLFlow</span><span class="tag t1">Kafka</span><span class="tag t1">Snowflake</span></div>
+    </div>
+
+    <div class="exp-card ec-qvc">
+      <div class="exp-top">
+        <span class="exp-company-badge eb2">QVC / Qurate Retail · West Chester, PA</span>
+        <span class="exp-dates">Oct 2022 – Nov 2024</span>
+      </div>
+      <div class="exp-role">AI/ML Engineer — ML Platform &amp; Cloud Services</div>
+      <p class="exp-desc">Designed and deployed Python-based ML recommendation models and NLP-driven product categorization into production microservices.</p>
+      <ul class="exp-bullets b2">
+        <li>Built RAG-based document retrieval pipelines using LangChain + OpenAI APIs; prompt engineering for product description generation — recommendation accuracy +15%.</li>
+        <li>Developed large-scale ETL and feature engineering pipelines using PySpark &amp; BigQuery processing 50M+ records daily for ML model training.</li>
+        <li>Implemented full MLOps — MLFlow versioning, A/B testing, drift monitoring, automated CI/CD for ML models via Docker, Kubernetes &amp; GitHub Actions.</li>
+        <li>Automated regression testing cutting manual effort by 35%; led Spring Boot 2.7 → 3.3.5 upgrade with zero downtime across distributed microservices fleet.</li>
+      </ul>
+      <div class="tag-row"><span class="tag t2">Python</span><span class="tag t2">PySpark</span><span class="tag t2">LangChain</span><span class="tag t2">BigQuery</span><span class="tag t2">Azure Databricks</span><span class="tag t2">MLFlow</span><span class="tag t2">Docker</span><span class="tag t2">Kubernetes</span><span class="tag t2">Scikit-learn</span></div>
+    </div>
+
+    <div class="exp-card ec-inn">
+      <div class="exp-top">
+        <span class="exp-company-badge eb3">Innominds · Hyderabad, India</span>
+        <span class="exp-dates">Nov 2019 – Jun 2021</span>
+      </div>
+      <div class="exp-role">Associate Software Engineer — AI/ML &amp; Backend</div>
+      <p class="exp-desc">Built multi-tier back-end applications and Python ETL pipelines for data validation, statistical analysis, and reporting.</p>
+      <ul class="exp-bullets b3">
+        <li>Developed Python automation pipelines for ETL workflows using Pandas and NumPy; built statistical analysis scripts for data quality and reporting.</li>
+        <li>Created comprehensive test suites with JUnit/Mockito — 90% code coverage, 15% reduction in defect escape rates.</li>
+      </ul>
+      <div class="tag-row"><span class="tag t3">Java 8</span><span class="tag t3">Python</span><span class="tag t3">Pandas</span><span class="tag t3">NumPy</span><span class="tag t3">Spring MVC</span><span class="tag t3">Oracle DB</span><span class="tag t3">Docker</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PROJECTS PREVIEW -->
+<div class="section">
+  <div class="sec-eyebrow"><span class="sec-eyebrow-text ec3">Projects</span><div class="sec-eyebrow-line el3"></div></div>
+  <h2 class="sec-title">Things I've built.</h2>
+  <div class="proj-grid">
+    <div class="proj-card pc1" onclick="showProjectDetail('churn')">
+      <div class="proj-icon pi1">📊</div>
+      <div><div class="proj-title">Telecom Churn Prediction</div><div class="proj-sub ps1">ML · Python · Scikit-learn</div></div>
+      <p class="proj-desc">End-to-end ML pipeline with Decision Tree, Random Forest, and KNN. Full EDA, 10-fold cross-validation, ROC-AUC evaluation, MLFlow tracking, and Docker deployment.</p>
+      <div class="proj-metrics">
+        <div><div class="pm-val pm1">85%</div><div class="pm-label">Accuracy</div></div>
+        <div><div class="pm-val pm1">0.88</div><div class="pm-label">ROC-AUC</div></div>
+      </div>
+      <div class="tag-row"><span class="tag t1">Python</span><span class="tag t1">Scikit-learn</span><span class="tag t1">Pandas</span><span class="tag t1">MLFlow</span></div>
+      <div class="proj-actions"><div class="btn-sm bsm1">View Details →</div><a class="btn-sm bsm-ghost" href="https://github.com/Narendrareddy5c4/Telecom-Customer-Churn" target="_blank" onclick="event.stopPropagation()">GitHub ↗</a></div>
+    </div>
+    <div class="proj-card pc2" onclick="showProjectDetail('genai')">
+      <div class="proj-icon pi2">🧠</div>
+      <div><div class="proj-title">GenAI Document Intelligence</div><div class="proj-sub ps2">LangChain · RAG · GPT API · FAISS</div></div>
+      <p class="proj-desc">Enterprise RAG pipeline for document Q&amp;A with FAISS vector search, prompt injection guardrails, hallucination reduction, and LangGraph agentic workflows.</p>
+      <div class="proj-metrics">
+        <div><div class="pm-val pm2">35%</div><div class="pm-label">Faster Processing</div></div>
+        <div><div class="pm-val pm2">RAG</div><div class="pm-label">Architecture</div></div>
+      </div>
+      <div class="tag-row"><span class="tag t2">LangChain</span><span class="tag t2">GPT API</span><span class="tag t2">FAISS</span><span class="tag t2">RAG</span></div>
+      <div class="proj-actions"><div class="btn-sm bsm2">View Details →</div></div>
+    </div>
+    <div class="proj-card pc3" onclick="showProjectDetail('chairstore')">
+      <div class="proj-icon pi3">🪑</div>
+      <div><div class="proj-title">ChairStore — Full Stack App</div><div class="proj-sub ps3">Python · Flask · SQLite · OAuth2</div></div>
+      <p class="proj-desc">Full-stack e-commerce catalog with Google OAuth2 auth, CRUD operations, REST JSON API endpoints, and Vagrant/VirtualBox deployment. Udacity FSND Capstone.</p>
+      <div class="tag-row"><span class="tag t3">Python</span><span class="tag t3">Flask</span><span class="tag t3">SQLite</span><span class="tag t3">Google OAuth2</span></div>
+      <div class="proj-actions"><div class="btn-sm bsm3">View Details →</div><a class="btn-sm bsm-ghost" href="https://github.com/Narendrareddy5c4/ChairStore" target="_blank" onclick="event.stopPropagation()">GitHub ↗</a></div>
+    </div>
+    <div class="proj-card pc4" onclick="showProjectDetail('react')">
+      <div class="proj-icon pi4">⚛️</div>
+      <div><div class="proj-title">React Learning Projects</div><div class="proj-sub ps4">React.js · TypeScript · Hooks</div></div>
+      <p class="proj-desc">Collection of production-quality React apps covering Hooks, component architecture, React Router SPA navigation, state management, and responsive ES6+ patterns.</p>
+      <div class="tag-row"><span class="tag t1">React.js</span><span class="tag t1">TypeScript</span><span class="tag t1">React Router</span><span class="tag t1">Hooks</span></div>
+      <div class="proj-actions"><div class="btn-sm bsm4">View Details →</div><a class="btn-sm bsm-ghost" href="https://github.com/Narendrareddy5c4/ReactLearning" target="_blank" onclick="event.stopPropagation()">GitHub ↗</a></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:36px;"><div class="btn-outline" style="cursor:pointer;display:inline-block;" onclick="showPage('projects')">All Projects →</div></div>
+</div>
+
+<!-- SKILLS -->
+<div class="section">
+  <div class="sec-eyebrow"><span class="sec-eyebrow-text ec4">Skills</span><div class="sec-eyebrow-line el4"></div></div>
+  <h2 class="sec-title">My tech stack.</h2>
+  <div class="skills-grid">
+    <div class="sg sg1"><div class="sg-title"><div class="sg-dot sd1"></div><span class="st1">Generative AI &amp; LLMs</span></div><div class="chips"><span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">RAG Pipelines</span><span class="chip">GPT-4 API</span><span class="chip">Gemini</span><span class="chip">LLaMA</span><span class="chip">HuggingFace</span><span class="chip">Prompt Engineering</span></div></div>
+    <div class="sg sg2"><div class="sg-title"><div class="sg-dot sd2"></div><span class="st2">ML &amp; Data Science</span></div><div class="chips"><span class="chip">Scikit-learn</span><span class="chip">TensorFlow</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">PySpark</span><span class="chip">MLFlow</span><span class="chip">Jupyter</span></div></div>
+    <div class="sg sg3"><div class="sg-title"><div class="sg-dot sd3"></div><span class="st3">Cloud AI Platforms</span></div><div class="chips"><span class="chip">AWS Bedrock</span><span class="chip">SageMaker</span><span class="chip">GCP Vertex AI</span><span class="chip">Azure Databricks</span><span class="chip">BigQuery</span><span class="chip">Azure ML Studio</span></div></div>
+    <div class="sg sg4"><div class="sg-title"><div class="sg-dot sd4"></div><span class="st4">Big Data &amp; Databases</span></div><div class="chips"><span class="chip">PySpark</span><span class="chip">Kafka</span><span class="chip">Snowflake</span><span class="chip">BigQuery</span><span class="chip">PostgreSQL</span><span class="chip">Oracle DB</span><span class="chip">Cosmos DB</span></div></div>
+    <div class="sg sg5"><div class="sg-title"><div class="sg-dot sd5"></div><span class="st5">Backend &amp; APIs</span></div><div class="chips"><span class="chip">Java 8–21</span><span class="chip">Python</span><span class="chip">Spring Boot</span><span class="chip">Flask</span><span class="chip">REST APIs</span><span class="chip">OAuth 2.0</span><span class="chip">JWT</span></div></div>
+    <div class="sg sg6"><div class="sg-title"><div class="sg-dot sd6"></div><span class="st6">DevOps &amp; CI/CD</span></div><div class="chips"><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Terraform</span><span class="chip">GitHub Actions</span><span class="chip">Jenkins</span><span class="chip">Azure DevOps</span></div></div>
+  </div>
+</div>
+
+<div class="contact-sec" id="contact-anchor">
+  <h2>Let's build something remarkable.</h2>
+  <p>Open to senior AI/ML Engineer, Generative AI, and Data Engineering roles — remote or hybrid from Irving, TX.</p>
+  <div class="contact-links">
+    <a class="cl cl1" href="mailto:narendramangunuru@gmail.com">✉ narendramangunuru@gmail.com</a>
+    <a class="cl cl2" href="tel:9133888995">☎ 913-388-8995</a>
+    <a class="cl cl3" href="https://www.linkedin.com/in/narendrareddy-mang-81746924b/" target="_blank">in LinkedIn ↗</a>
+    <a class="cl cl4" href="https://github.com/Narendrareddy5c4" target="_blank">◈ GitHub ↗</a>
+  </div>
+</div>
+<footer><p>Designed &amp; built by <span>Narendra Reddy</span> · AI/ML Engineer · Irving, TX</p></footer>
+</div>
+
+<!-- ═══════════════ PROJECTS PAGE ═══════════════ -->
+<div class="page" id="page-projects">
+<div class="section" style="padding-top:110px;">
+  <div class="sec-eyebrow"><span class="sec-eyebrow-text ec3">All Projects</span><div class="sec-eyebrow-line el3"></div></div>
+  <h2 class="sec-title">Things I've built.</h2>
+  <div class="proj-grid">
+    <div class="proj-card pc1" onclick="showProjectDetail('churn')">
+      <div class="proj-icon pi1">📊</div>
+      <div><div class="proj-title">Telecom Churn Prediction</div><div class="proj-sub ps1">ML · Python · Scikit-learn</div></div>
+      <p class="proj-desc">End-to-end ML pipeline with Decision Tree, Random Forest, and KNN. Full EDA, 10-fold cross-validation, ROC-AUC evaluation, MLFlow tracking &amp; Docker deployment.</p>
+      <div class="proj-metrics"><div><div class="pm-val pm1">85%</div><div class="pm-label">Accuracy</div></div><div><div class="pm-val pm1">0.88</div><div class="pm-label">ROC-AUC</div></div></div>
+      <div class="tag-row"><span class="tag t1">Python</span><span class="tag t1">Scikit-learn</span><span class="tag t1">Pandas</span><span class="tag t1">Seaborn</span><span class="tag t1">MLFlow</span></div>
+      <div class="proj-actions"><div class="btn-sm bsm1">View Details →</div><a class="btn-sm bsm-ghost" href="https://github.com/Narendrareddy5c4/Telecom-Customer-Churn" target="_blank" onclick="event.stopPropagation()">GitHub ↗</a></div>
+    </div>
+    <div class="proj-card pc2" onclick="showProjectDetail('genai')">
+      <div class="proj-icon pi2">🧠</div>
+      <div><div class="proj-title">GenAI Document Intelligence</div><div class="proj-sub ps2">LangChain · RAG · GPT API</div></div>
+      <p class="proj-desc">Production RAG pipeline for enterprise document Q&amp;A. FAISS vector search, LangGraph agentic workflows, prompt injection guardrails, and responsible AI compliance.</p>
+      <div class="proj-metrics"><div><div class="pm-val pm2">35%</div><div class="pm-label">Faster Processing</div></div><div><div class="pm-val pm2">RAG</div><div class="pm-label">Architecture</div></div></div>
+      <div class="tag-row"><span class="tag t2">LangChain</span><span class="tag t2">GPT API</span><span class="tag t2">FAISS</span><span class="tag t2">Python</span></div>
+      <div class="proj-actions"><div class="btn-sm bsm2">View Details →</div></div>
+    </div>
+    <div class="proj-card pc3" onclick="showProjectDetail('chairstore')">
+      <div class="proj-icon pi3">🪑</div>
+      <div><div class="proj-title">ChairStore — Full Stack App</div><div class="proj-sub ps3">Python · Flask · SQLite · OAuth2</div></div>
+      <p class="proj-desc">Full-stack e-commerce catalog with Google OAuth2 auth, CRUD management, REST JSON API endpoints, and Vagrant/VirtualBox deployment. Udacity FSND Capstone project.</p>
+      <div class="tag-row"><span class="tag t3">Python</span><span class="tag t3">Flask</span><span class="tag t3">SQLite</span><span class="tag t3">Google OAuth2</span></div>
+      <div class="proj-actions"><div class="btn-sm bsm3">View Details →</div><a class="btn-sm bsm-ghost" href="https://github.com/Narendrareddy5c4/ChairStore" target="_blank" onclick="event.stopPropagation()">GitHub ↗</a></div>
+    </div>
+    <div class="proj-card pc4" onclick="showProjectDetail('react')">
+      <div class="proj-icon pi4">⚛️</div>
+      <div><div class="proj-title">React Learning Projects</div><div class="proj-sub ps4">React.js · TypeScript · Hooks</div></div>
+      <p class="proj-desc">Collection of production-quality React apps — Hooks, component architecture, React Router SPA navigation, state management, and responsive CSS Grid/Flexbox patterns.</p>
+      <div class="tag-row"><span class="tag t1">React.js</span><span class="tag t1">TypeScript</span><span class="tag t1">React Router</span><span class="tag t1">useState</span></div>
+      <div class="proj-actions"><div class="btn-sm bsm4">View Details →</div><a class="btn-sm bsm-ghost" href="https://github.com/Narendrareddy5c4/ReactLearning" target="_blank" onclick="event.stopPropagation()">GitHub ↗</a></div>
+    </div>
+  </div>
+</div>
+<div class="contact-sec">
+  <h2>Let's build something remarkable.</h2>
+  <p>Open to AI/ML and Generative AI roles — Irving, TX or remote.</p>
+  <div class="contact-links">
+    <a class="cl cl1" href="mailto:narendramangunuru@gmail.com">✉ Email</a>
+    <a class="cl cl3" href="https://www.linkedin.com/in/narendrareddy-mang-81746924b/" target="_blank">in LinkedIn ↗</a>
+    <a class="cl cl4" href="https://github.com/Narendrareddy5c4" target="_blank">◈ GitHub ↗</a>
+  </div>
+</div>
+<footer><p>Built by <span>Narendra Reddy</span> · Irving, TX</p></footer>
+</div>
+
+<!-- ═══════════════ DETAIL: CHURN ═══════════════ -->
+<div class="page" id="page-churn">
+<div class="pd-wrap">
+  <div class="back-btn" onclick="goBack()">← Back</div>
+  <div class="pd-eyebrow ec1">Machine Learning · Python · Scikit-learn · MLFlow</div>
+  <h1 class="pd-title">Telecom Customer<br>Churn Prediction</h1>
+  <p class="pd-desc">An end-to-end ML pipeline predicting telecom customer churn — identifying key risk factors to enable targeted retention strategies. Achieved 85% accuracy and 0.88 ROC-AUC with Random Forest as the best-performing model.</p>
+  <div class="pd-stats">
+    <div class="pd-stat"><div class="pd-stat-val rv1">85%</div><div class="pd-stat-label">Model Accuracy</div></div>
+    <div class="pd-stat"><div class="pd-stat-val rv2">0.88</div><div class="pd-stat-label">ROC-AUC Score</div></div>
+    <div class="pd-stat"><div class="pd-stat-val rv3">10-fold</div><div class="pd-stat-label">Cross-Validation</div></div>
+    <div class="pd-stat"><div class="pd-stat-val rv4">3</div><div class="pd-stat-label">ML Algorithms</div></div>
+  </div>
+  <div class="pd-tags"><span class="tag t1">Python</span><span class="tag t1">Scikit-learn</span><span class="tag t1">Pandas</span><span class="tag t1">NumPy</span><span class="tag t2">Matplotlib</span><span class="tag t2">Seaborn</span><span class="tag t3">MLFlow</span><span class="tag t3">Docker</span><span class="tag t1">Jupyter Notebook</span></div>
+
+  <div class="pd-section">
+    <div class="pd-sec-title">Problem &amp; Objectives</div>
+    <div class="feat-grid">
+      <div class="feat f1"><div class="feat-icon">💸</div><div class="feat-title">Revenue Protection</div><div class="feat-text">Customer churn leads to significant revenue loss. Predicting churn early enables targeted retention before customers leave.</div></div>
+      <div class="feat f2"><div class="feat-icon">🎯</div><div class="feat-title">Key Factor Identification</div><div class="feat-text">Identify main churn drivers — contract type, monthly charges, tenure, service packages — to inform pricing and product decisions.</div></div>
+      <div class="feat f3"><div class="feat-icon">⚖️</div><div class="feat-title">Algorithm Comparison</div><div class="feat-text">Evaluate Decision Tree, Random Forest, and KNN to identify the best model for real-time production deployment.</div></div>
+      <div class="feat f4"><div class="feat-icon">🚀</div><div class="feat-title">MLOps Ready</div><div class="feat-text">MLFlow experiment tracking, model versioning, Docker containerization for reproducible, production-ready deployment.</div></div>
+    </div>
+  </div>
+
+  <div class="pd-section">
+    <div class="pd-sec-title">Methodology</div>
+    <div class="steps">
+      <div class="step"><div class="step-num sn-a">1</div><div class="step-body"><div class="step-title">Data Collection &amp; EDA</div><div class="step-text">Dataset includes customer contract info, network logs, service packages, and DB records. EDA on categorical variables (Partner, Dependents, Services) and continuous variables (Tenure, MonthlyCharges). Correlation heatmaps to visualize interdependencies.</div></div></div>
+      <div class="step"><div class="step-num sn-b">2</div><div class="step-body"><div class="step-title">Data Cleaning &amp; Feature Engineering</div><div class="step-text">Data cleaning, feature selection, stratified train/test splitting to maintain class balance. Feature scaling and categorical encoding.</div></div></div>
+      <div class="step"><div class="step-num sn-c">3</div><div class="step-body"><div class="step-title">Model Training &amp; Evaluation</div><div class="step-text">Trained Decision Tree, Random Forest, and KNN classifiers with 10-fold cross-validation. Evaluated with confusion matrices and ROC-AUC curves.<div class="code-block">from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import cross_val_score
+
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+scores = cross_val_score(rf, X_train, y_train, cv=10)
+print(f"Accuracy: {scores.mean():.2f}")  # → 0.85
+# ROC-AUC: 0.88 — Best performing model</div></div></div></div>
+      <div class="step"><div class="step-num sn-d">4</div><div class="step-body"><div class="step-title">MLOps &amp; Deployment</div><div class="step-text">MLFlow model tracking, experiment logging, Docker containerization for reproducibility, and hyperparameter tuning history.</div></div></div>
+    </div>
+  </div>
+
+  <div class="pd-section">
+    <div class="pd-sec-title">Results</div>
+    <div class="result-grid">
+      <div class="res-card rc1"><div class="res-val rv1">85%</div><div class="res-label">Random Forest Accuracy</div></div>
+      <div class="res-card rc2"><div class="res-val rv2">0.88</div><div class="res-label">ROC-AUC Score</div></div>
+      <div class="res-card rc3"><div class="res-val rv3">RF</div><div class="res-label">Best Model</div></div>
+      <div class="res-card rc4"><div class="res-val rv4">10x</div><div class="res-label">Cross-Val Folds</div></div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:40px;">
+    <a class="btn-primary" href="https://github.com/Narendrareddy5c4/Telecom-Customer-Churn" target="_blank">View on GitHub ↗</a>
+    <div class="btn-outline" style="cursor:pointer;" onclick="goBack()">← Back</div>
+  </div>
+</div>
+<footer><p>Built by <span>Narendra Reddy</span> · AI/ML Engineer</p></footer>
+</div>
+
+<!-- ═══════════════ DETAIL: GENAI ═══════════════ -->
+<div class="page" id="page-genai">
+<div class="pd-wrap">
+  <div class="back-btn" onclick="goBack()">← Back</div>
+  <div class="pd-eyebrow ec2">Generative AI · LangChain · RAG · GPT API · FAISS</div>
+  <h1 class="pd-title">GenAI Document<br>Intelligence System</h1>
+  <p class="pd-desc">A production-grade Retrieval-Augmented Generation pipeline enabling enterprise document Q&amp;A with responsible AI guardrails — hallucination reduction, prompt injection protection, FAISS vector search, and LangGraph agentic workflows.</p>
+  <div class="pd-stats">
+    <div class="pd-stat"><div class="pd-stat-val rv2">35%</div><div class="pd-stat-label">Faster Processing</div></div>
+    <div class="pd-stat"><div class="pd-stat-val rv3">RAG</div><div class="pd-stat-label">Architecture</div></div>
+    <div class="pd-stat"><div class="pd-stat-val rv1">FAISS</div><div class="pd-stat-label">Vector Store</div></div>
+  </div>
+  <div class="pd-tags"><span class="tag t2">LangChain</span><span class="tag t2">LangGraph</span><span class="tag t2">GPT-4 API</span><span class="tag t2">Gemini API</span><span class="tag t1">FAISS</span><span class="tag t1">Python</span><span class="tag t3">RAG</span><span class="tag t3">HuggingFace</span></div>
+
+  <div class="pd-section">
+    <div class="pd-sec-title">Architecture</div>
+    <div class="feat-grid">
+      <div class="feat f1"><div class="feat-icon">📄</div><div class="feat-title">Document Ingestion</div><div class="feat-text">Ingest enterprise documents (PDFs, Word). Chunk, embed, and index into FAISS vector store for semantic similarity search at scale.</div></div>
+      <div class="feat f2"><div class="feat-icon">🔍</div><div class="feat-title">RAG Retrieval</div><div class="feat-text">Retrieve top-K relevant chunks via FAISS cosine similarity. Feed retrieved context + query to LLM for grounded, accurate responses.</div></div>
+      <div class="feat f3"><div class="feat-icon">🛡️</div><div class="feat-title">Responsible AI Guardrails</div><div class="feat-text">Prompt injection detection, hallucination reduction via retrieval grounding, output moderation, access control — responsible AI first-class.</div></div>
+      <div class="feat f4"><div class="feat-icon">🤖</div><div class="feat-title">LangGraph Agents</div><div class="feat-text">Multi-step agentic workflows for complex document reasoning — conditional branching, tool use, and multi-turn memory.</div></div>
+      <div class="feat f5"><div class="feat-icon">⚡</div><div class="feat-title">Multi-LLM Support</div><div class="feat-text">Pluggable LLM backend — GPT-4, Gemini, or LLaMA via a unified LangChain interface with streaming support.</div></div>
+    </div>
+  </div>
+
+  <div class="pd-section">
+    <div class="pd-sec-title">Pipeline</div>
+    <div class="steps">
+      <div class="step"><div class="step-num sn-a">1</div><div class="step-body"><div class="step-title">Document Loading &amp; Chunking</div><div class="step-text">Load enterprise documents → split into overlapping chunks → generate embeddings using OpenAI or HuggingFace embedding models.</div></div></div>
+      <div class="step"><div class="step-num sn-b">2</div><div class="step-body"><div class="step-title">Vector Store Indexing</div><div class="step-text">Store embeddings in FAISS for fast approximate nearest-neighbor retrieval at scale.<div class="code-block">from langchain.vectorstores import FAISS
+from langchain.embeddings import OpenAIEmbeddings
+
+vectorstore = FAISS.from_documents(docs, OpenAIEmbeddings())
+retriever = vectorstore.as_retriever(search_kwargs={"k": 5})</div></div></div></div>
+      <div class="step"><div class="step-num sn-c">3</div><div class="step-body"><div class="step-title">Prompt Engineering &amp; Guardrails</div><div class="step-text">System prompts enforce grounded answers, reject prompt injection, moderate outputs. Hallucination rate reduced via strict retrieval-only context windows.</div></div></div>
+      <div class="step"><div class="step-num sn-d">4</div><div class="step-body"><div class="step-title">Response Generation</div><div class="step-text">Feed retrieved context + query to GPT-4/Gemini via LangChain RetrievalQA chain. Return grounded, cited, accurate answers with source attribution.</div></div></div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:40px;">
+    <div class="btn-outline" style="cursor:pointer;" onclick="goBack()">← Back</div>
+  </div>
+</div>
+<footer><p>Built by <span>Narendra Reddy</span> · AI/ML Engineer</p></footer>
+</div>
+
+<!-- ═══════════════ DETAIL: CHAIRSTORE ═══════════════ -->
+<div class="page" id="page-chairstore">
+<div class="pd-wrap">
+  <div class="back-btn" onclick="goBack()">← Back</div>
+  <div class="pd-eyebrow ec3">Python · Flask · SQLite · Google OAuth2 · REST API</div>
+  <h1 class="pd-title">ChairStore<br>Full Stack Web App</h1>
+  <p class="pd-desc">A full-stack e-commerce catalog application for chair categories and products. Built with Python/Flask, SQLite, Google OAuth2 authentication, and REST JSON API endpoints. Udacity Full Stack Nanodegree Capstone.</p>
+  <div class="pd-stats">
+    <div class="pd-stat"><div class="pd-stat-val rv3">3</div><div class="pd-stat-label">JSON Endpoints</div></div>
+    <div class="pd-stat"><div class="pd-stat-val rv1">OAuth2</div><div class="pd-stat-label">Google Auth</div></div>
+    <div class="pd-stat"><div class="pd-stat-val rv2">CRUD</div><div class="pd-stat-label">Full Operations</div></div>
+  </div>
+  <div class="pd-tags"><span class="tag t3">Python</span><span class="tag t3">Flask</span><span class="tag t3">SQLite</span><span class="tag t3">Google OAuth2</span><span class="tag t2">HTML</span><span class="tag t2">CSS</span><span class="tag t1">Vagrant</span><span class="tag t1">VirtualBox</span></div>
+
+  <div class="pd-section">
+    <div class="pd-sec-title">Features</div>
+    <div class="feat-grid">
+      <div class="feat f1"><div class="feat-icon">🔐</div><div class="feat-title">Google OAuth2 Auth</div><div class="feat-text">Secure login via Google OAuth2. Authenticated users can add, edit, and delete only their own categories and items.</div></div>
+      <div class="feat f2"><div class="feat-icon">🗂️</div><div class="feat-title">Full CRUD</div><div class="feat-text">Create, read, update, delete operations for chair categories and products with owner-based access control.</div></div>
+      <div class="feat f3"><div class="feat-icon">🔌</div><div class="feat-title">REST JSON API</div><div class="feat-text">Three JSON endpoints expose catalog data for third-party integration: all categories, all items, items by category.</div></div>
+      <div class="feat f4"><div class="feat-icon">🖥️</div><div class="feat-title">Vagrant Deployment</div><div class="feat-text">Reproducible local environment using Vagrant + VirtualBox. Runs at localhost:5000.</div></div>
+    </div>
+  </div>
+
+  <div class="pd-section">
+    <div class="pd-sec-title">API Endpoints &amp; Setup</div>
+    <div class="code-block">GET /chairs/category/json          → All chair categories
+GET /chairs/all.json               → All chairs across all categories
+GET /chairs/category/3/items.json  → All items in category 3
+
+# Local Setup:
+$ vagrant up
+$ vagrant ssh
+$ cd /vagrant/ChairStore
+$ python Catalog.py
+# → Open http://localhost:5000</div>
+  </div>
+
+  <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:40px;">
+    <a class="btn-primary" href="https://github.com/Narendrareddy5c4/ChairStore" target="_blank">View on GitHub ↗</a>
+    <div class="btn-outline" style="cursor:pointer;" onclick="goBack()">← Back</div>
+  </div>
+</div>
+<footer><p>Built by <span>Narendra Reddy</span> · AI/ML Engineer</p></footer>
+</div>
+
+<!-- ═══════════════ DETAIL: REACT ═══════════════ -->
+<div class="page" id="page-react">
+<div class="pd-wrap">
+  <div class="back-btn" onclick="goBack()">← Back</div>
+  <div class="pd-eyebrow ec4">React.js · TypeScript · Hooks · React Router · ES6+</div>
+  <h1 class="pd-title">React Learning<br>Projects</h1>
+  <p class="pd-desc">A collection of production-quality React applications built to master modern frontend patterns — state management, component architecture, SPA routing, and responsive design.</p>
+  <div class="pd-tags"><span class="tag t1">React.js</span><span class="tag t1">TypeScript</span><span class="tag t1">JavaScript ES6+</span><span class="tag t2">React Router</span><span class="tag t2">useState</span><span class="tag t2">useEffect</span><span class="tag t3">CSS Grid</span><span class="tag t3">Flexbox</span></div>
+
+  <div class="pd-section">
+    <div class="pd-sec-title">What's Covered</div>
+    <div class="feat-grid">
+      <div class="feat f1"><div class="feat-icon">🪝</div><div class="feat-title">React Hooks</div><div class="feat-text">useState, useEffect, useContext, useReducer — practical implementations with clear separation of concerns.</div></div>
+      <div class="feat f2"><div class="feat-icon">🧩</div><div class="feat-title">Component Architecture</div><div class="feat-text">Functional and class components, reusable patterns, prop drilling vs context, and component composition.</div></div>
+      <div class="feat f3"><div class="feat-icon">🗺️</div><div class="feat-title">SPA Navigation</div><div class="feat-text">React Router v6 — nested routes, dynamic params, protected routes, and navigation state management.</div></div>
+      <div class="feat f4"><div class="feat-icon">📱</div><div class="feat-title">Responsive UI</div><div class="feat-text">CSS Grid, Flexbox, mobile-first layouts with accessible, semantic HTML and modern ES6+ patterns.</div></div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:40px;">
+    <a class="btn-primary" href="https://github.com/Narendrareddy5c4/ReactLearning" target="_blank">View on GitHub ↗</a>
+    <div class="btn-outline" style="cursor:pointer;" onclick="goBack()">← Back</div>
+  </div>
+</div>
+<footer><p>Built by <span>Narendra Reddy</span> · AI/ML Engineer</p></footer>
+</div>
+
+<script>
+const techs=[
+  {t:'Python',c:'c1'},{t:'LangChain',c:'c2'},{t:'LangGraph',c:'c3'},{t:'RAG Pipelines',c:'c4'},{t:'GPT-4 API',c:'c5'},
+  {t:'Gemini API',c:'c1'},{t:'PySpark',c:'c2'},{t:'Scikit-learn',c:'c3'},{t:'TensorFlow',c:'c4'},{t:'MLFlow',c:'c5'},
+  {t:'AWS Bedrock',c:'c1'},{t:'GCP Vertex AI',c:'c2'},{t:'Azure Databricks',c:'c3'},{t:'Kafka',c:'c4'},{t:'Snowflake',c:'c5'},
+  {t:'BigQuery',c:'c1'},{t:'Docker',c:'c2'},{t:'Kubernetes',c:'c3'},{t:'React.js',c:'c4'},{t:'TypeScript',c:'c5'},
+  {t:'Spring Boot',c:'c1'},{t:'Java 21',c:'c2'},{t:'FAISS',c:'c3'},{t:'HuggingFace',c:'c4'},{t:'Terraform',c:'c5'}
+];
+const track=document.getElementById('ticker');
+const all=[...techs,...techs];
+track.innerHTML=all.map(({t,c})=>`<span class="ticker-item ${c}">${t}<span class="ticker-dot"></span></span>`).join('');
+
+let prevPage='home';
+
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  const nl=document.getElementById('nav-'+name);
+  if(nl)nl.classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+  prevPage=name;
+}
+
+function showProjectDetail(name){
+  prevPage=document.querySelector('.page.active').id.replace('page-','');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  document.getElementById('nav-projects').classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+function goBack(){showPage(prevPage||'projects');}
+
+function scrollContact(){
+  showPage('home');
+  setTimeout(()=>document.getElementById('contact-anchor').scrollIntoView({behavior:'smooth'}),100);
+}
+</script>
+</body>
+</html>
