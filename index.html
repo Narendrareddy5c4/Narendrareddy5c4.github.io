@@ -230,6 +230,41 @@ footer span{color:#4A7FA5;font-weight:600;}
   .contact-sec{padding:52px 20px;}
   .hero-photo-col{display:none;}
 }
+.live-demo {
+    position: relative;
+    border: 2px solid #22c55e;
+    color: #22c55e;
+    text-decoration: none;
+    animation: pulseGreen 1.8s infinite;
+}
+
+.live-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: blink 1s infinite;
+}
+
+@keyframes pulseGreen {
+    0% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.8);
+    }
+    70% {
+        box-shadow: 0 0 0 12px rgba(34, 197, 94, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.3;
+    }
+}
 </style>
 </head>
 <body>
@@ -376,10 +411,11 @@ footer span{color:#4A7FA5;font-weight:600;}
       <p class="proj-desc">End-to-end ML pipeline with Decision Tree, Random Forest, and KNN. Full EDA, 10-fold cross-validation, ROC-AUC evaluation, MLFlow tracking, and Docker deployment.</p>
       <div class="proj-metrics"><div><div class="pm-val pm1">85%</div><div class="pm-label">Accuracy</div></div><div><div class="pm-val pm1">0.88</div><div class="pm-label">ROC-AUC</div></div></div>
       <div class="tag-row"><span class="tag t1">Python</span><span class="tag t1">Scikit-learn</span><span class="tag t1">Pandas</span><span class="tag t1">MLFlow</span></div>
-      <div class="proj-actions"><div class="btn-sm bsm1">View Details →</div><a class="btn-sm bsm-ghost"
+      <div class="proj-actions"><div class="btn-sm bsm1">View Details →</div><a class="btn-sm bsm-ghost live-demo"
        href="https://telecom-customer-churn-zvmeytufoxmmkfcss4hdnw.streamlit.app/"
        target="_blank"
        onclick="event.stopPropagation()">
+       <span class="live-dot"></span>
        Live Demo ↗
     </a><a class="btn-sm bsm-ghost" href="https://github.com/Narendrareddy5c4/Telecom-Customer-Churn" target="_blank" onclick="event.stopPropagation()">GitHub ↗</a></div>
     </div>
@@ -396,7 +432,7 @@ footer span{color:#4A7FA5;font-weight:600;}
       <div><div class="proj-title">ChairStore — Full Stack App</div><div class="proj-sub ps3">Python · Flask · SQLite · OAuth2</div></div>
       <p class="proj-desc">Full-stack e-commerce catalog with Google OAuth2 auth, CRUD operations, REST JSON API endpoints, and Vagrant/VirtualBox deployment. Udacity FSND Capstone.</p>
       <div class="tag-row"><span class="tag t3">Python</span><span class="tag t3">Flask</span><span class="tag t3">SQLite</span><span class="tag t3">Google OAuth2</span></div>
-      <div class="proj-actions"><div class="btn-sm bsm3">View Details →</div><a class="btn-sm bsm-ghost"
+      <div class="proj-actions"><div class="btn-sm bsm3">View Details →</div><a class="btn-sm bsm-ghost live-demo"
        href="https://chairstore.onrender.com/"
        target="_blank"
        onclick="event.stopPropagation()">
