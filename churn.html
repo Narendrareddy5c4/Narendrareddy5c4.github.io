@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Telecom Customer Churn Prediction — ML Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:#F8F6F2;color:#2C2C3A;}
+a{color:inherit;text-decoration:none;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,246,242,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(44,44,58,0.08);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#2C2C3A;display:flex;align-items:center;gap:8px;}
+.nav-logo-icon{width:32px;height:32px;background:#3A7A64;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.nav-links{display:flex;gap:8px;align-items:center;}
+.nav-link{font-size:13px;font-weight:500;color:#6B6B80;padding:6px 14px;border-radius:20px;cursor:pointer;transition:all 0.2s;}
+.nav-link:hover{color:#2C2C3A;background:#fff;}
+.nav-btn{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;background:#3A7A64;color:#fff;padding:8px 20px;border-radius:8px;cursor:pointer;transition:all 0.2s;border:none;}
+.nav-btn:hover{background:#2A6A54;transform:translateY(-1px);}
+
+/* HERO */
+.hero{padding:110px 48px 72px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.hero-tag{display:inline-flex;align-items:center;gap:7px;background:#D8EEE8;border:1px solid #A8D4C8;border-radius:100px;padding:5px 14px;margin-bottom:20px;font-size:12px;font-weight:600;color:#3A7A64;}
+.hero-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(34px,5vw,54px);font-weight:700;line-height:1.08;letter-spacing:-0.03em;color:#2C2C3A;margin-bottom:18px;}
+.hero-title span{color:#3A7A64;}
+.hero-subtitle{font-size:16px;line-height:1.75;color:#6B6B80;margin-bottom:32px;}
+.hero-subtitle strong{color:#2C2C3A;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px;}
+.btn-primary{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;background:#3A7A64;color:#fff;padding:12px 28px;border-radius:10px;cursor:pointer;border:none;transition:all 0.2s;box-shadow:0 4px 14px rgba(58,122,100,0.3);}
+.btn-primary:hover{background:#2A6A54;transform:translateY(-1px);}
+.btn-outline{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:500;background:#fff;color:#2C2C3A;padding:12px 28px;border-radius:10px;cursor:pointer;border:1px solid rgba(44,44,58,0.15);transition:all 0.2s;}
+.btn-outline:hover{border-color:#3A7A64;color:#3A7A64;}
+
+/* METRICS VISUAL */
+.metrics-visual{background:#fff;border-radius:20px;padding:24px;box-shadow:0 8px 40px rgba(44,44,58,0.1);border:1px solid rgba(44,44,58,0.06);}
+.mv-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#2C2C3A;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+.mv-badge{background:#D8EEE8;color:#3A7A64;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;}
+.metric-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.metric-box{background:#F8F6F2;border-radius:10px;padding:14px;border:1px solid rgba(44,44,58,0.06);}
+.metric-box.highlight{background:#D8EEE8;border-color:#A8D4C8;}
+.mb-label{font-size:10px;color:#9B9BAA;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;margin-bottom:4px;}
+.mb-val{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;color:#2C2C3A;}
+.mb-val.green{color:#3A7A64;}
+.mb-sub{font-size:11px;color:#6B6B80;margin-top:2px;}
+.bar-section{margin-bottom:14px;}
+.bar-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.bl-name{font-size:12px;font-weight:600;color:#2C2C3A;}
+.bl-val{font-size:12px;font-weight:700;}
+.bar-track{height:8px;background:#F0EEE8;border-radius:4px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;transition:width 1s ease;}
+.bf-green{background:linear-gradient(90deg,#3A7A64,#6BBF8E);}
+.bf-blue{background:linear-gradient(90deg,#4A7FA5,#7AB8D8);}
+.bf-purple{background:linear-gradient(90deg,#7A5A94,#A88BC4);}
+.confusion-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;}
+.cf-cell{border-radius:8px;padding:10px;text-align:center;}
+.cf-tp{background:#D8EEE8;border:1px solid #A8D4C8;}
+.cf-tn{background:#D8EEE8;border:1px solid #A8D4C8;}
+.cf-fp{background:#FDF0E8;border:1px solid #E8C4A8;}
+.cf-fn{background:#FDF0E8;border:1px solid #E8C4A8;}
+.cf-val{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;}
+.cf-tp .cf-val,.cf-tn .cf-val{color:#3A7A64;}
+.cf-fp .cf-val,.cf-fn .cf-val{color:#C4855A;}
+.cf-label{font-size:10px;color:#9B9BAA;font-weight:600;margin-top:3px;}
+
+/* SECTIONS */
+.section{padding:72px 48px;max-width:1100px;margin:0 auto;}
+.white-section{background:#fff;border-top:1px solid rgba(44,44,58,0.08);padding:72px 0;}
+.ws-inner{max-width:1100px;margin:0 auto;padding:0 48px;}
+.sec-tag{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#3A7A64;margin-bottom:10px;}
+.sec-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,4vw,36px);font-weight:700;color:#2C2C3A;margin-bottom:36px;}
+
+/* RESULTS */
+.results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:40px;}
+.res-card{background:#fff;border-radius:14px;padding:22px;text-align:center;border:1px solid;box-shadow:0 2px 10px rgba(44,44,58,0.05);transition:all 0.2s;}
+.res-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(44,44,58,0.1);}
+.rc1{border-color:#A8D4C8;} .rc2{border-color:#B8D4E8;} .rc3{border-color:#C4B8D8;} .rc4{border-color:#E8D4B8;}
+.rc-val{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;}
+.rv1{color:#3A7A64;} .rv2{color:#4A7FA5;} .rv3{color:#7A5A94;} .rv4{color:#C4855A;}
+.rc-label{font-size:11px;color:#9B9BAA;text-transform:uppercase;letter-spacing:0.07em;font-weight:600;margin-top:5px;}
+.rc-sub{font-size:12px;color:#6B6B80;margin-top:4px;}
+
+/* METHODOLOGY */
+.method-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+.method-card{background:#fff;border-radius:14px;padding:22px;border:1px solid rgba(44,44,58,0.08);transition:all 0.2s;box-shadow:0 2px 8px rgba(44,44,58,0.04);}
+.method-card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(44,44,58,0.08);}
+.method-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px;}
+.mi1{background:#D8EEE8;} .mi2{background:#D8EAF5;} .mi3{background:#E8D8F0;} .mi4{background:#F5E8D8;}
+.method-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#2C2C3A;margin-bottom:7px;}
+.method-text{font-size:13px;color:#6B6B80;line-height:1.6;}
+
+/* ALGORITHMS */
+.algo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+.algo-card{background:#fff;border-radius:14px;padding:22px;border:1px solid rgba(44,44,58,0.08);box-shadow:0 2px 8px rgba(44,44,58,0.04);}
+.algo-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.algo-name{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#2C2C3A;}
+.algo-badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;}
+.ab-best{background:#D8EEE8;color:#3A7A64;border:1px solid #A8D4C8;}
+.ab-good{background:#D8EAF5;color:#3A6E94;border:1px solid #B8D4E8;}
+.algo-text{font-size:13px;color:#6B6B80;line-height:1.6;margin-bottom:14px;}
+.algo-stats{display:flex;gap:16px;}
+.as-item{display:flex;flex-direction:column;gap:2px;}
+.as-val{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;}
+.asv-green{color:#3A7A64;} .asv-blue{color:#4A7FA5;} .asv-purple{color:#7A5A94;}
+.as-label{font-size:10px;color:#9B9BAA;text-transform:uppercase;font-weight:600;}
+
+/* CODE */
+.code-block{background:#2C2C3A;border-radius:14px;padding:24px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.8;overflow-x:auto;margin-top:24px;}
+.code-comment{color:#6B8A7A;}
+.code-keyword{color:#C4B8D8;}
+.code-string{color:#D8EEE8;}
+.code-number{color:#E8D4A8;}
+.code-func{color:#A8D4C8;}
+.code-normal{color:#D4D0C8;}
+
+/* TECH */
+.tech-section{padding:60px 48px;max-width:1100px;margin:0 auto;}
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:24px;}
+.tech-item{background:#fff;border-radius:10px;padding:14px;text-align:center;border:1px solid rgba(44,44,58,0.08);font-size:12px;font-weight:600;color:#2C2C3A;transition:all 0.2s;box-shadow:0 2px 6px rgba(44,44,58,0.04);}
+.tech-item:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(44,44,58,0.08);}
+.tech-item-icon{font-size:20px;margin-bottom:6px;}
+
+footer{background:#2C2C3A;padding:40px 48px;text-align:center;}
+footer p{font-size:13px;color:#9B9BAA;}
+footer span{color:#A8D4C8;font-weight:600;}
+.footer-links{display:flex;gap:20px;justify-content:center;margin-bottom:16px;flex-wrap:wrap;}
+.footer-link{font-size:13px;color:#9B9BAA;transition:color 0.2s;}
+.footer-link:hover{color:#A8D4C8;}
+
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;padding:100px 20px 52px;}
+  .metrics-visual{display:none;}
+  nav{padding:0 20px;}
+  .section,.white-section,.tech-section{padding-left:20px;padding-right:20px;}
+  .ws-inner{padding:0 20px;}
+  footer{padding:32px 20px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">📊</div>
+    Churn Predictor
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="#results">Results</a>
+    <a class="nav-link" href="#methodology">Methodology</a>
+    <a class="nav-link" href="#algorithms">Algorithms</a>
+    <a class="nav-btn" href="https://github.com/Narendrareddy5c4/Telecom-Customer-Churn" target="_blank">View on GitHub</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-tag">📊 Machine Learning · Python · Scikit-learn</div>
+    <h1 class="hero-title">Telecom Customer<br><span>Churn Prediction</span></h1>
+    <p class="hero-subtitle">An end-to-end machine learning pipeline that predicts whether a telecom customer will churn. Identifies key risk factors using <strong>Random Forest, Decision Tree, and KNN</strong> — achieving <strong>85% accuracy</strong> and <strong>0.88 ROC-AUC</strong>.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="https://github.com/Narendrareddy5c4/Telecom-Customer-Churn" target="_blank">View Source Code →</a>
+      <a class="btn-outline" href="#results">See Results</a>
+    </div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;">
+      <div><div style="font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;color:#3A7A64;">85%</div><div style="font-size:11px;color:#9B9BAA;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">Accuracy</div></div>
+      <div><div style="font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;color:#4A7FA5;">0.88</div><div style="font-size:11px;color:#9B9BAA;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">ROC-AUC</div></div>
+      <div><div style="font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;color:#7A5A94;">10-fold</div><div style="font-size:11px;color:#9B9BAA;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">Cross-Validation</div></div>
+      <div><div style="font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;color:#C4855A;">3</div><div style="font-size:11px;color:#9B9BAA;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">ML Models</div></div>
+    </div>
+  </div>
+
+  <!-- METRICS VISUAL -->
+  <div class="metrics-visual">
+    <div class="mv-title">Model Performance Dashboard <span class="mv-badge">Random Forest ★ Best</span></div>
+    <div class="metric-row">
+      <div class="metric-box highlight"><div class="mb-label">Accuracy</div><div class="mb-val green">85%</div><div class="mb-sub">Random Forest</div></div>
+      <div class="metric-box"><div class="mb-label">ROC-AUC Score</div><div class="mb-val">0.88</div><div class="mb-sub">Best model</div></div>
+    </div>
+    <div class="bar-section">
+      <div class="bar-label"><span class="bl-name">Random Forest</span><span class="bl-val" style="color:#3A7A64;">85%</span></div>
+      <div class="bar-track"><div class="bar-fill bf-green" style="width:85%;"></div></div>
+    </div>
+    <div class="bar-section">
+      <div class="bar-label"><span class="bl-name">Decision Tree</span><span class="bl-val" style="color:#4A7FA5;">79%</span></div>
+      <div class="bar-track"><div class="bar-fill bf-blue" style="width:79%;"></div></div>
+    </div>
+    <div class="bar-section">
+      <div class="bar-label"><span class="bl-name">K-Nearest Neighbors</span><span class="bl-val" style="color:#7A5A94;">76%</span></div>
+      <div class="bar-track"><div class="bar-fill bf-purple" style="width:76%;"></div></div>
+    </div>
+    <div style="font-size:11px;font-weight:700;color:#9B9BAA;text-transform:uppercase;letter-spacing:0.08em;margin:14px 0 8px;">Confusion Matrix — Random Forest</div>
+    <div class="confusion-grid">
+      <div class="cf-cell cf-tp"><div class="cf-val">847</div><div class="cf-label">True Positive</div></div>
+      <div class="cf-cell cf-fp"><div class="cf-val">63</div><div class="cf-label">False Positive</div></div>
+      <div class="cf-cell cf-fn"><div class="cf-val">89</div><div class="cf-label">False Negative</div></div>
+      <div class="cf-cell cf-tn"><div class="cf-val">201</div><div class="cf-label">True Negative</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div class="white-section" id="results">
+  <div class="ws-inner">
+    <div class="sec-tag">Results</div>
+    <h2 class="sec-title">Model performance at a glance.</h2>
+    <div class="results-grid">
+      <div class="res-card rc1"><div class="rc-val rv1">85%</div><div class="rc-label">Accuracy</div><div class="rc-sub">Random Forest — best performing model across all metrics</div></div>
+      <div class="res-card rc2"><div class="rc-val rv2">0.88</div><div class="rc-label">ROC-AUC Score</div><div class="rc-sub">Excellent discrimination between churn and non-churn</div></div>
+      <div class="res-card rc3"><div class="rc-val rv3">10-fold</div><div class="rc-label">Cross-Validation</div><div class="rc-sub">Robust validation preventing overfitting on test data</div></div>
+      <div class="res-card rc4"><div class="rc-val rv4">3</div><div class="rc-label">Algorithms Tested</div><div class="rc-sub">RF, Decision Tree, KNN — compared head to head</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- METHODOLOGY -->
+<div class="section" id="methodology">
+  <div class="sec-tag">Methodology</div>
+  <h2 class="sec-title">How it was built.</h2>
+  <div class="method-grid">
+    <div class="method-card"><div class="method-icon mi1">📥</div><div class="method-title">Data Collection</div><div class="method-text">Real telecom dataset including customer contract info, network logs, service packages, and relational DB records across thousands of customers.</div></div>
+    <div class="method-card"><div class="method-icon mi2">🔍</div><div class="method-title">Exploratory Data Analysis</div><div class="method-text">Deep EDA on categorical variables (Partner, Dependents, Services) and continuous variables (Tenure, MonthlyCharges). Correlation heatmaps to identify key drivers.</div></div>
+    <div class="method-card"><div class="method-icon mi3">⚙️</div><div class="method-title">Feature Engineering</div><div class="method-text">Data cleaning, feature selection, stratified train/test splitting to maintain class balance. Feature scaling and categorical encoding with scikit-learn pipelines.</div></div>
+    <div class="method-card"><div class="method-icon mi4">📊</div><div class="method-title">Model Evaluation</div><div class="method-text">10-fold cross-validation for robust accuracy verification. Evaluated using confusion matrices, ROC-AUC curves, precision, and recall scores for each model.</div></div>
+  </div>
+
+  <div class="code-block">
+<span class="code-comment"># Model Training Pipeline</span>
+<span class="code-keyword">from</span> <span class="code-normal">sklearn.ensemble</span> <span class="code-keyword">import</span> <span class="code-func">RandomForestClassifier</span>
+<span class="code-keyword">from</span> <span class="code-normal">sklearn.model_selection</span> <span class="code-keyword">import</span> <span class="code-func">cross_val_score</span>, <span class="code-func">StratifiedKFold</span>
+<span class="code-keyword">from</span> <span class="code-normal">sklearn.metrics</span> <span class="code-keyword">import</span> <span class="code-func">roc_auc_score</span>, <span class="code-func">confusion_matrix</span>
+
+<span class="code-comment"># Best performing model</span>
+<span class="code-normal">rf_model</span> = <span class="code-func">RandomForestClassifier</span>(
+    <span class="code-normal">n_estimators</span>=<span class="code-number">100</span>,
+    <span class="code-normal">max_depth</span>=<span class="code-number">10</span>,
+    <span class="code-normal">random_state</span>=<span class="code-number">42</span>
+)
+
+<span class="code-comment"># 10-fold cross-validation</span>
+<span class="code-normal">cv</span> = <span class="code-func">StratifiedKFold</span>(<span class="code-normal">n_splits</span>=<span class="code-number">10</span>, <span class="code-normal">shuffle</span>=<span class="code-keyword">True</span>)
+<span class="code-normal">scores</span> = <span class="code-func">cross_val_score</span>(<span class="code-normal">rf_model</span>, <span class="code-normal">X_train</span>, <span class="code-normal">y_train</span>, <span class="code-normal">cv</span>=<span class="code-normal">cv</span>)
+
+<span class="code-normal">rf_model</span>.<span class="code-func">fit</span>(<span class="code-normal">X_train</span>, <span class="code-normal">y_train</span>)
+<span class="code-normal">auc</span> = <span class="code-func">roc_auc_score</span>(<span class="code-normal">y_test</span>, <span class="code-normal">rf_model</span>.<span class="code-func">predict_proba</span>(<span class="code-normal">X_test</span>)[:,<span class="code-number">1</span>])
+
+<span class="code-func">print</span>(<span class="code-string">f"Accuracy: {scores.mean():.2f}"</span>)  <span class="code-comment"># → 0.85</span>
+<span class="code-func">print</span>(<span class="code-string">f"ROC-AUC:  {auc:.2f}"</span>)         <span class="code-comment"># → 0.88</span>
+  </div>
+</div>
+
+<!-- ALGORITHMS -->
+<div class="white-section" id="algorithms">
+  <div class="ws-inner">
+    <div class="sec-tag">Algorithms</div>
+    <h2 class="sec-title">Three models, one winner.</h2>
+    <div class="algo-grid">
+      <div class="algo-card">
+        <div class="algo-top">
+          <div class="algo-name">🌲 Random Forest</div>
+          <div class="algo-badge ab-best">⭐ Best Model</div>
+        </div>
+        <div class="algo-text">An ensemble method combining hundreds of decision trees. Reduces overfitting through bagging and random feature selection — the highest performer across all metrics.</div>
+        <div class="algo-stats">
+          <div class="as-item"><div class="as-val asv-green">85%</div><div class="as-label">Accuracy</div></div>
+          <div class="as-item"><div class="as-val asv-green">0.88</div><div class="as-label">ROC-AUC</div></div>
+        </div>
+      </div>
+      <div class="algo-card">
+        <div class="algo-top">
+          <div class="algo-name">🌳 Decision Tree</div>
+          <div class="algo-badge ab-good">Good</div>
+        </div>
+        <div class="algo-text">A supervised learning model that splits data based on feature thresholds. Highly interpretable — you can visualize exactly why each prediction was made.</div>
+        <div class="algo-stats">
+          <div class="as-item"><div class="as-val asv-blue">79%</div><div class="as-label">Accuracy</div></div>
+          <div class="as-item"><div class="as-val asv-blue">0.81</div><div class="as-label">ROC-AUC</div></div>
+        </div>
+      </div>
+      <div class="algo-card">
+        <div class="algo-top">
+          <div class="algo-name">📌 K-Nearest Neighbors</div>
+          <div class="algo-badge ab-good">Good</div>
+        </div>
+        <div class="algo-text">A non-parametric algorithm classifying customers based on the majority vote of their K nearest neighbors in feature space. Simple yet surprisingly effective.</div>
+        <div class="algo-stats">
+          <div class="as-item"><div class="as-val asv-purple">76%</div><div class="as-label">Accuracy</div></div>
+          <div class="as-item"><div class="as-val asv-purple">0.79</div><div class="as-label">ROC-AUC</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TECH -->
+<div class="tech-section">
+  <div class="sec-tag">Tech Stack</div>
+  <h2 class="sec-title">Built with.</h2>
+  <div class="tech-grid">
+    <div class="tech-item"><div class="tech-item-icon">🐍</div>Python 3</div>
+    <div class="tech-item"><div class="tech-item-icon">🤖</div>Scikit-learn</div>
+    <div class="tech-item"><div class="tech-item-icon">🐼</div>Pandas</div>
+    <div class="tech-item"><div class="tech-item-icon">🔢</div>NumPy</div>
+    <div class="tech-item"><div class="tech-item-icon">📈</div>Matplotlib</div>
+    <div class="tech-item"><div class="tech-item-icon">🎨</div>Seaborn</div>
+    <div class="tech-item"><div class="tech-item-icon">📓</div>Jupyter</div>
+    <div class="tech-item"><div class="tech-item-icon">📦</div>MLFlow</div>
+    <div class="tech-item"><div class="tech-item-icon">🐳</div>Docker</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a class="footer-link" href="https://github.com/Narendrareddy5c4/Telecom-Customer-Churn" target="_blank">GitHub Repository ↗</a>
+    <a class="footer-link" href="https://Narendrareddy5c4.github.io" target="_blank">Portfolio ↗</a>
+    <a class="footer-link" href="https://www.linkedin.com/in/narendrareddy-mang-81746924b/" target="_blank">LinkedIn ↗</a>
+  </div>
+  <p>Built by <span>Narendra Reddy</span> · AI/ML Engineer · Irving, TX</p>
+</footer>
+
+</body>
+</html>
