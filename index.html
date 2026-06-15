@@ -1,711 +1,690 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Narendra Reddy — AI/ML Engineer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+  :root{
+    /* Material 3 inspired tokens — light surface, bold indigo primary */
+    --primary: #4F46E5;
+    --primary-dark: #4338CA;
+    --on-primary: #FFFFFF;
+    --primary-container: #E6E4FF;
+    --on-primary-container: #1A1060;
 
-/* ── PALETTE (from the image: soft pastels, warm neutrals) ──
-   Background:  #F8F6F2  warm off-white
-   Surface:     #FFFFFF  pure white cards
-   Soft blue:   #B8D4E8  muted sky blue
-   Soft peach:  #E8C4A8  warm salmon/peach
-   Soft purple: #C4B8D8  muted lavender
-   Soft teal:   #A8D4C8  calm teal/mint
-   Text dark:   #2C2C3A  near-black
-   Text mid:    #6B6B80  medium gray
-   Text light:  #9B9BAA  light gray
-   Accent:      #4A7FA5  calm blue (CTA)
-*/
+    --secondary: #00897B;
+    --secondary-container: #D6F4EF;
+    --on-secondary-container: #00352F;
 
-body{font-family:'Inter',sans-serif;background:#F8F6F2;color:#2C2C3A;overflow-x:hidden;}
-a{color:inherit;text-decoration:none;}
-.page{display:none;min-height:100vh;}
-.page.active{display:block;}
+    --surface: #FFFFFF;
+    --surface-dim: #F7F6FB;
+    --surface-variant: #ECEBF4;
+    --on-surface: #1C1B1F;
+    --on-surface-variant: #49454F;
+    --outline: #DEDCE8;
 
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(248,246,242,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(44,44,58,0.08);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;}
-.nav-logo{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;cursor:pointer;color:#2C2C3A;letter-spacing:-0.02em;}
-.nav-logo span{color:#4A7FA5;}
-.nav-links{display:flex;gap:4px;}
-.nav-link{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:#6B6B80;padding:7px 16px;border-radius:20px;cursor:pointer;transition:all 0.2s;border:1px solid transparent;}
-.nav-link:hover{color:#2C2C3A;background:#fff;border-color:rgba(44,44,58,0.1);}
-.nav-link.active{color:#4A7FA5;background:#fff;border-color:rgba(74,127,165,0.25);}
+    --radius-lg: 28px;
+    --radius-md: 16px;
+    --radius-sm: 10px;
 
-/* ── HERO ── */
-.hero{padding:130px 48px 80px;max-width:1100px;margin:0 auto;position:relative;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(44,44,58,0.1);border-radius:100px;padding:6px 16px;margin-bottom:32px;box-shadow:0 2px 12px rgba(44,44,58,0.06);}
-.hero-badge-dot{width:8px;height:8px;border-radius:50%;background:#6BBF8E;box-shadow:0 0 6px rgba(107,191,142,0.5);animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
-@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
-@keyframes greenGlow{0%,100%{box-shadow:0 0 8px #6BBF8E,0 0 16px rgba(107,191,142,0.4);}50%{box-shadow:0 0 14px #6BBF8E,0 0 28px rgba(107,191,142,0.6);}}
-@keyframes greenPulse{0%,100%{opacity:0.3;transform:scale(1);}50%{opacity:0.6;transform:scale(1.12);}}
-@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
-.hero-badge-text{font-family:'Inter',sans-serif;font-size:12px;color:#6B6B80;font-weight:500;}
-.hero-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(48px,7vw,80px);font-weight:700;line-height:1.02;letter-spacing:-0.03em;margin-bottom:12px;color:#2C2C3A;}
-.hero-name .hn-blue{color:#4A7FA5;}
-.hero-role{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:24px;}
-.role-pill{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;font-family:'Inter',sans-serif;letter-spacing:0.02em;}
-.rp1{background:#D8EAF5;color:#3A6E94;border:1px solid #B8D4E8;}
-.rp2{background:#E8D8F0;color:#7A5A94;border:1px solid #C4B8D8;}
-.rp3{background:#D8EEE8;color:#3A7A64;border:1px solid #A8D4C8;}
-.hero-desc{font-size:17px;line-height:1.8;color:#6B6B80;max-width:580px;margin-bottom:40px;}
-.hero-desc strong{color:#2C2C3A;font-weight:600;}
-.hero-stats{display:flex;gap:0;margin-bottom:44px;background:#fff;border:1px solid rgba(44,44,58,0.1);border-radius:16px;overflow:hidden;width:fit-content;box-shadow:0 4px 20px rgba(44,44,58,0.06);}
-.stat{padding:18px 28px;display:flex;flex-direction:column;gap:4px;border-right:1px solid rgba(44,44,58,0.08);}
-.stat:last-child{border-right:none;}
-.stat-num{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;}
-.sn1{color:#4A7FA5;} .sn2{color:#7A5A94;} .sn3{color:#3A7A64;} .sn4{color:#C4855A;}
-.stat-label{font-family:'Inter',sans-serif;font-size:10px;color:#9B9BAA;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;}
-.cta-row{display:flex;gap:12px;flex-wrap:wrap;}
-.btn-primary{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;background:#4A7FA5;color:#fff;border:none;padding:13px 32px;border-radius:10px;cursor:pointer;transition:all 0.2s;display:inline-block;box-shadow:0 4px 16px rgba(74,127,165,0.3);}
-.btn-primary:hover{background:#3A6E94;transform:translateY(-1px);box-shadow:0 6px 20px rgba(74,127,165,0.4);}
-.btn-outline{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:500;background:#fff;color:#2C2C3A;border:1px solid rgba(44,44,58,0.15);padding:13px 32px;border-radius:10px;cursor:pointer;transition:all 0.2s;display:inline-block;box-shadow:0 2px 8px rgba(44,44,58,0.06);}
-.btn-outline:hover{border-color:#4A7FA5;color:#4A7FA5;}
+    --elev-1: 0 1px 2px rgba(28,27,31,0.08), 0 1px 4px rgba(28,27,31,0.06);
+    --elev-2: 0 2px 6px rgba(28,27,31,0.10), 0 4px 12px rgba(28,27,31,0.08);
+    --elev-3: 0 6px 16px rgba(28,27,31,0.12), 0 2px 6px rgba(28,27,31,0.08);
+  }
 
-/* ── TICKER ── */
-.ticker-wrap{overflow:hidden;border-top:1px solid rgba(44,44,58,0.08);border-bottom:1px solid rgba(44,44,58,0.08);padding:12px 0;background:#fff;margin:0;}
-.ticker-track{display:flex;gap:0;width:max-content;animation:ticker 40s linear infinite;}
-.ticker-item{font-family:'JetBrains Mono',monospace;font-size:11px;white-space:nowrap;padding:0 20px;display:flex;align-items:center;gap:10px;font-weight:500;}
-.tc1{color:#4A7FA5;} .tc2{color:#7A5A94;} .tc3{color:#3A7A64;} .tc4{color:#C4855A;} .tc5{color:#8A6A5A;}
-.ticker-sep{color:#C8C8D4;font-size:14px;}
+  *{ margin:0; padding:0; box-sizing:border-box; }
 
-/* ── SECTIONS ── */
-.section{padding:72px 48px;max-width:1100px;margin:0 auto;}
-.sec-label{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
-.sec-label-text{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;}
-.sl1{color:#4A7FA5;} .sl2{color:#7A5A94;} .sl3{color:#3A7A64;} .sl4{color:#C4855A;}
-.sec-label-line{flex:1;height:1px;background:rgba(44,44,58,0.1);}
-.sec-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,4vw,38px);font-weight:700;color:#2C2C3A;margin-bottom:36px;line-height:1.2;}
+  html{ scroll-behavior:smooth; }
 
-/* ── ABOUT ── */
-.about-layout{display:grid;grid-template-columns:1.3fr 1fr;gap:52px;align-items:start;}
-.about-body{font-size:16px;line-height:1.85;color:#6B6B80;}
-.about-body strong{color:#2C2C3A;font-weight:600;}
-.about-body p+p{margin-top:16px;}
-.comp-grid{display:flex;flex-direction:column;gap:8px;}
-.comp-card{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:10px;border:1px solid;transition:all 0.2s;background:#fff;}
-.cc1{border-color:#B8D4E8;} .cc2{border-color:#C4B8D8;} .cc3{border-color:#A8D4C8;}
-.cc4{border-color:#E8D4B8;} .cc5{border-color:#D8B8C8;} .cc6{border-color:#B8C8D8;}
-.comp-card:hover{transform:translateX(4px);box-shadow:0 4px 16px rgba(44,44,58,0.08);}
-.comp-icon{font-size:16px;width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.ci1{background:#D8EAF5;} .ci2{background:#E8D8F0;} .ci3{background:#D8EEE8;}
-.ci4{background:#F5E8D8;} .ci5{background:#F0D8E4;} .ci6{background:#D8E4F0;}
-.comp-text{font-size:13px;color:#2C2C3A;font-weight:500;}
+  /* Scroll reveal */
+  .reveal{ opacity:0; transform:translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+  .reveal-stagger > *{ opacity:0; transform:translateY(20px); transition: opacity .5s ease, transform .5s ease; }
+  .reveal-stagger.in-view > *{ opacity:1; transform:translateY(0); }
+  .reveal-stagger.in-view > *:nth-child(1){ transition-delay:.02s; }
+  .reveal-stagger.in-view > *:nth-child(2){ transition-delay:.08s; }
+  .reveal-stagger.in-view > *:nth-child(3){ transition-delay:.14s; }
+  .reveal-stagger.in-view > *:nth-child(4){ transition-delay:.20s; }
+  .reveal-stagger.in-view > *:nth-child(5){ transition-delay:.26s; }
+  .reveal-stagger.in-view > *:nth-child(6){ transition-delay:.32s; }
 
-/* ── EXPERIENCE ── */
-.exp-list{display:flex;flex-direction:column;gap:16px;}
-.exp-card{border-radius:14px;padding:26px 28px;border:1px solid;background:#fff;position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(44,44,58,0.05);transition:box-shadow 0.2s;}
-.exp-card:hover{box-shadow:0 6px 24px rgba(44,44,58,0.1);}
-.exp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
-.ec-paychex{border-color:#B8D4E8;} .ec-paychex::before{background:linear-gradient(90deg,#4A7FA5,#B8D4E8);}
-.ec-qvc{border-color:#C4B8D8;} .ec-qvc::before{background:linear-gradient(90deg,#7A5A94,#C4B8D8);}
-.ec-inn{border-color:#A8D4C8;} .ec-inn::before{background:linear-gradient(90deg,#3A7A64,#A8D4C8);}
-.exp-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
-.exp-company-badge{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase;}
-.eb1{background:#D8EAF5;color:#3A6E94;border:1px solid #B8D4E8;}
-.eb2{background:#E8D8F0;color:#7A5A94;border:1px solid #C4B8D8;}
-.eb3{background:#D8EEE8;color:#3A7A64;border:1px solid #A8D4C8;}
-.exp-dates{font-family:'Inter',sans-serif;font-size:12px;color:#9B9BAA;font-weight:500;}
-.exp-role{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#2C2C3A;margin-bottom:10px;}
-.exp-desc{font-size:14px;line-height:1.7;color:#6B6B80;margin-bottom:14px;}
-.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
-.exp-bullets li{font-size:13px;color:#6B6B80;line-height:1.65;padding-left:16px;position:relative;}
-.exp-bullets li::before{content:'▸';position:absolute;left:0;font-size:10px;top:3px;}
-.b1 li::before{color:#4A7FA5;} .b2 li::before{color:#7A5A94;} .b3 li::before{color:#3A7A64;}
-.tag-row{display:flex;flex-wrap:wrap;gap:5px;}
-.tag{font-family:'Inter',sans-serif;font-size:11px;padding:3px 10px;border-radius:20px;border:1px solid;font-weight:500;}
-.t1{color:#3A6E94;background:#EAF3FA;border-color:#B8D4E8;}
-.t2{color:#7A5A94;background:#F0E8F8;border-color:#C4B8D8;}
-.t3{color:#3A7A64;background:#E8F4EE;border-color:#A8D4C8;}
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal, .reveal-stagger > *{ opacity:1; transform:none; transition:none; }
+    .ripple{ display:none; }
+  }
 
-/* ── PROJECTS ── */
-.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;}
-.proj-card{border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:14px;cursor:pointer;transition:all 0.25s;border:1px solid;background:#fff;box-shadow:0 2px 12px rgba(44,44,58,0.05);}
-.proj-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(44,44,58,0.12);}
-.pc1{border-color:#B8D4E8;} .pc2{border-color:#C4B8D8;} .pc3{border-color:#A8D4C8;} .pc4{border-color:#E8D4B8;}
-.proj-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;}
-.pi1{background:#D8EAF5;} .pi2{background:#E8D8F0;} .pi3{background:#D8EEE8;} .pi4{background:#F5E8D8;}
-.proj-title{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;color:#2C2C3A;}
-.proj-sub{font-family:'Inter',sans-serif;font-size:11px;margin-top:3px;font-weight:600;letter-spacing:0.03em;}
-.ps1{color:#4A7FA5;} .ps2{color:#7A5A94;} .ps3{color:#3A7A64;} .ps4{color:#C4855A;}
-.proj-desc{font-size:13px;line-height:1.65;color:#6B6B80;flex:1;}
-.proj-metrics{display:flex;gap:18px;flex-wrap:wrap;}
-.pm-val{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;}
-.pm1{color:#4A7FA5;} .pm2{color:#7A5A94;} .pm3{color:#3A7A64;} .pm4{color:#C4855A;}
-.pm-label{font-family:'Inter',sans-serif;font-size:10px;color:#9B9BAA;text-transform:uppercase;margin-top:2px;font-weight:600;}
-.proj-actions{display:flex;gap:8px;margin-top:2px;}
-.btn-sm{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;padding:7px 14px;border-radius:8px;cursor:pointer;border:1px solid;transition:all 0.2s;}
-.bsm1{background:#D8EAF5;color:#3A6E94;border-color:#B8D4E8;} .bsm1:hover{background:#B8D4E8;}
-.bsm2{background:#E8D8F0;color:#7A5A94;border-color:#C4B8D8;} .bsm2:hover{background:#C4B8D8;}
-.bsm3{background:#D8EEE8;color:#3A7A64;border-color:#A8D4C8;} .bsm3:hover{background:#A8D4C8;}
-.bsm4{background:#F5E8D8;color:#C4855A;border-color:#E8C4A8;} .bsm4:hover{background:#E8C4A8;}
-.bsm-ghost{background:transparent;color:#9B9BAA;border-color:rgba(44,44,58,0.12);} .bsm-ghost:hover{color:#2C2C3A;border-color:rgba(44,44,58,0.25);}
+  body{
+    font-family:'Roboto', sans-serif;
+    color:var(--on-surface);
+    background:var(--surface-dim);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
 
-/* ── SKILLS ── */
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
-.sg{border-radius:12px;padding:20px;border:1px solid;background:#fff;transition:all 0.2s;box-shadow:0 2px 8px rgba(44,44,58,0.04);}
-.sg:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(44,44,58,0.08);}
-.sg1{border-color:#B8D4E8;} .sg2{border-color:#C4B8D8;} .sg3{border-color:#A8D4C8;}
-.sg4{border-color:#E8D4B8;} .sg5{border-color:#D8B8C8;} .sg6{border-color:#B8C8D8;}
-.sg-title{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:7px;}
-.sg-dot{width:6px;height:6px;border-radius:50%;}
-.sd1{background:#4A7FA5;} .sd2{background:#7A5A94;} .sd3{background:#3A7A64;}
-.sd4{background:#C4855A;} .sd5{background:#B45A7A;} .sd6{background:#5A7AB4;}
-.st1{color:#4A7FA5;} .st2{color:#7A5A94;} .st3{color:#3A7A64;}
-.st4{color:#C4855A;} .st5{color:#B45A7A;} .st6{color:#5A7AB4;}
-.chips{display:flex;flex-wrap:wrap;gap:5px;}
-.chip{font-family:'Inter',sans-serif;font-size:11px;padding:3px 9px;border-radius:6px;color:#6B6B80;background:#F4F2EE;border:1px solid rgba(44,44,58,0.08);font-weight:500;}
+  .mono{ font-family:'Roboto Mono', monospace; }
 
-/* ── PROJECT DETAIL ── */
-.pd-wrap{padding:100px 48px 72px;max-width:960px;margin:0 auto;}
-.back-btn{display:inline-flex;align-items:center;gap:7px;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;padding:8px 16px;border-radius:8px;cursor:pointer;margin-bottom:36px;transition:all 0.2s;border:1px solid rgba(44,44,58,0.12);color:#6B6B80;background:#fff;}
-.back-btn:hover{color:#2C2C3A;border-color:#4A7FA5;background:#F0F7FC;}
-.pd-eyebrow{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:16px;}
-.pd-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,5vw,54px);font-weight:700;line-height:1.1;color:#2C2C3A;margin-bottom:20px;}
-.pd-desc{font-size:17px;line-height:1.78;color:#6B6B80;max-width:700px;margin-bottom:32px;}
-.pd-stats{display:flex;gap:0;background:#fff;border:1px solid rgba(44,44,58,0.1);border-radius:14px;overflow:hidden;margin-bottom:32px;width:fit-content;flex-wrap:wrap;box-shadow:0 4px 16px rgba(44,44,58,0.06);}
-.pd-stat{padding:16px 24px;border-right:1px solid rgba(44,44,58,0.08);display:flex;flex-direction:column;gap:4px;}
-.pd-stat:last-child{border-right:none;}
-.pd-stat-val{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;}
-.pv1{color:#4A7FA5;} .pv2{color:#7A5A94;} .pv3{color:#3A7A64;} .pv4{color:#C4855A;}
-.pd-stat-label{font-family:'Inter',sans-serif;font-size:10px;color:#9B9BAA;text-transform:uppercase;font-weight:600;}
-.pd-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:44px;}
-.pd-section{margin-bottom:48px;}
-.pd-sec-title{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:#2C2C3A;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid rgba(44,44,58,0.1);}
-.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
-.feat{border-radius:10px;padding:18px;border:1px solid;background:#fff;transition:transform 0.2s;box-shadow:0 2px 8px rgba(44,44,58,0.04);}
-.feat:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(44,44,58,0.08);}
-.f1{border-color:#B8D4E8;} .f2{border-color:#C4B8D8;} .f3{border-color:#A8D4C8;} .f4{border-color:#E8D4B8;} .f5{border-color:#D8B8C8;}
-.feat-icon{font-size:20px;margin-bottom:10px;}
-.feat-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#2C2C3A;margin-bottom:6px;}
-.feat-text{font-size:13px;color:#6B6B80;line-height:1.6;}
-.steps{display:flex;flex-direction:column;gap:0;}
-.step{display:flex;gap:18px;padding-bottom:28px;position:relative;}
-.step:not(:last-child)::after{content:'';position:absolute;left:14px;top:32px;bottom:0;width:1px;background:rgba(44,44,58,0.1);}
-.step-num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;flex-shrink:0;}
-.sn-a{background:#D8EAF5;color:#3A6E94;border:1px solid #B8D4E8;}
-.sn-b{background:#E8D8F0;color:#7A5A94;border:1px solid #C4B8D8;}
-.sn-c{background:#D8EEE8;color:#3A7A64;border:1px solid #A8D4C8;}
-.sn-d{background:#F5E8D8;color:#C4855A;border:1px solid #E8C4A8;}
-.step-body{padding-top:3px;}
-.step-title{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#2C2C3A;margin-bottom:6px;}
-.step-text{font-size:13px;color:#6B6B80;line-height:1.68;}
-.code-block{background:#F0EEE8;border:1px solid rgba(44,44,58,0.1);border-radius:10px;padding:18px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#3A6E94;line-height:1.75;overflow-x:auto;margin-top:12px;}
-.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;}
-.res-card{border-radius:10px;padding:18px;text-align:center;border:1px solid;background:#fff;box-shadow:0 2px 8px rgba(44,44,58,0.05);}
-.rc1{border-color:#B8D4E8;} .rc2{border-color:#C4B8D8;} .rc3{border-color:#A8D4C8;} .rc4{border-color:#E8D4B8;}
-.res-val{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;}
-.rv1{color:#4A7FA5;} .rv2{color:#7A5A94;} .rv3{color:#3A7A64;} .rv4{color:#C4855A;}
-.res-label{font-family:'Inter',sans-serif;font-size:10px;color:#9B9BAA;margin-top:4px;text-transform:uppercase;font-weight:600;}
+  a{ color:inherit; text-decoration:none; }
 
-/* ── CONTACT ── */
-.contact-sec{padding:72px 48px;text-align:center;background:#fff;border-top:1px solid rgba(44,44,58,0.08);}
-.contact-sec h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:700;margin-bottom:12px;color:#2C2C3A;}
-.contact-sec h2 span{color:#4A7FA5;}
-.contact-sec p{font-size:15px;color:#6B6B80;margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto;}
-.contact-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
-.cl{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:10px;border:1px solid;transition:all 0.2s;cursor:pointer;background:#fff;}
-.cl1{color:#3A6E94;border-color:#B8D4E8;background:#F0F7FC;} .cl1:hover{background:#D8EAF5;transform:translateY(-2px);}
-.cl2{color:#5A7A3A;border-color:#A8D4B8;background:#F0F8F4;} .cl2:hover{background:#D8EED8;transform:translateY(-2px);}
-.cl3{color:#7A5A94;border-color:#C4B8D8;background:#F8F0FC;} .cl3:hover{background:#E8D8F0;transform:translateY(-2px);}
-.cl4{color:#8A6A3A;border-color:#E8D4B8;background:#FDF8F0;} .cl4:hover{background:#F5E8D8;transform:translateY(-2px);}
+  img{ max-width:100%; display:block; }
 
-footer{text-align:center;padding:22px;background:#F0EEE8;border-top:1px solid rgba(44,44,58,0.08);}
-footer p{font-family:'Inter',sans-serif;font-size:11px;color:#9B9BAA;font-weight:500;}
-footer span{color:#4A7FA5;font-weight:600;}
+  /* ---------- App bar ---------- */
+  .appbar{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom:1px solid var(--outline);
+  }
+  .appbar-inner{
+    max-width:1120px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+  }
+  .brand{
+    font-weight:700; font-size:1.05rem; letter-spacing:0.04em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .brand-mark{
+    width:36px; height:36px; border-radius:50%;
+    background:var(--primary); color:var(--on-primary);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Roboto Mono', monospace; font-weight:700; font-size:0.95rem;
+  }
+  .nav-links{ display:flex; gap:28px; font-size:0.92rem; font-weight:500; color:var(--on-surface-variant); }
+  .nav-links a{ position:relative; transition:color .2s; padding-bottom:4px; }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:0; height:2px; width:0;
+    background:var(--primary); transition:width .25s ease;
+  }
+  .nav-links a:hover{ color:var(--primary); }
+  .nav-links a:hover::after, .nav-links a.active::after{ width:100%; }
+  .nav-links a.active{ color:var(--primary); }
+  .nav-toggle{ display:none; }
 
-@media(max-width:768px){
-  .about-layout{grid-template-columns:1fr;}
-  .hero-stats{flex-wrap:wrap;width:100%;}
-  .stat{padding:14px 18px;}
-  nav{padding:0 20px;}
-  .section,.hero,.pd-wrap{padding-left:20px;padding-right:20px;}
-  .contact-sec{padding:52px 20px;}
-  .hero-photo-col{display:none;}
-}
-.live-demo {
-    position: relative;
-    border: 2px solid #22c55e;
-    color: #22c55e;
-    text-decoration: none;
-    animation: pulseGreen 1.8s infinite;
-}
+  /* ---------- Buttons ---------- */
+  .btn{
+    position:relative; overflow:hidden;
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 24px; border-radius:100px;
+    font-weight:600; font-size:0.92rem;
+    border:1px solid transparent; cursor:pointer;
+    transition: box-shadow .2s, transform .15s, background .2s;
+  }
+  .btn:active{ transform:scale(0.98); }
+  .btn-filled{ background:var(--primary); color:var(--on-primary); box-shadow:var(--elev-1); }
+  .btn-filled:hover{ box-shadow:var(--elev-2); background:var(--primary-dark); }
+  .btn-outline{ border-color:var(--outline); color:var(--on-surface); background:transparent; }
+  .btn-outline:hover{ background:var(--surface-variant); }
 
-.live-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: #22c55e;
-    border-radius: 50%;
-    margin-right: 6px;
-    animation: blink 1s infinite;
-}
+  .ripple{
+    position:absolute; border-radius:50%; background:rgba(255,255,255,0.45);
+    transform:scale(0); animation:ripple-anim .55s ease-out; pointer-events:none;
+  }
+  .btn-outline .ripple{ background:rgba(79,70,229,0.18); }
+  @keyframes ripple-anim{ to{ transform:scale(1); opacity:0; } }
 
-@keyframes pulseGreen {
-    0% {
-        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.8);
-    }
-    70% {
-        box-shadow: 0 0 0 12px rgba(34, 197, 94, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
-    }
-}
+  /* Floating action button */
+  .fab{
+    position:fixed; bottom:28px; right:28px; z-index:90;
+    width:52px; height:52px; border-radius:50%;
+    background:var(--primary); color:var(--on-primary);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.3rem; box-shadow:var(--elev-2); cursor:pointer;
+    border:none; opacity:0; transform:translateY(16px) scale(0.8);
+    transition: opacity .25s, transform .25s, background .2s, box-shadow .2s;
+  }
+  .fab.show{ opacity:1; transform:translateY(0) scale(1); }
+  .fab:hover{ background:var(--primary-dark); box-shadow:var(--elev-3); }
 
-@keyframes blink {
-    50% {
-        opacity: 0.3;
-    }
-}
+  /* ---------- Hero ---------- */
+  .hero{ max-width:1120px; margin:0 auto; padding:72px 24px 40px; }
+  .hero-grid{ display:grid; grid-template-columns: 1.3fr 0.9fr; gap:48px; align-items:center; }
+  .eyebrow{
+    font-family:'Roboto Mono', monospace; font-size:0.8rem; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--primary); font-weight:700; margin-bottom:14px;
+  }
+  .hero h1{ font-size:3.2rem; font-weight:900; line-height:1.08; letter-spacing:-0.02em; }
+  .hero h1 span{ color:var(--primary); }
+  .hero-roles{
+    margin-top:14px; font-size:1.05rem; color:var(--on-surface-variant); font-weight:500;
+  }
+  .hero-roles .sep{ color:var(--outline); margin:0 8px; }
+  .hero p.lede{ margin-top:20px; font-size:1.05rem; color:var(--on-surface-variant); max-width:560px; }
+  .hero-actions{ margin-top:28px; display:flex; gap:14px; flex-wrap:wrap; }
+
+  .hero-photo{
+    position:relative; border-radius:var(--radius-lg);
+    overflow:hidden; background:var(--primary-container);
+    box-shadow:var(--elev-3);
+    aspect-ratio: 4/5;
+  }
+  .hero-photo img{ width:100%; height:100%; object-fit:cover; }
+  .hero-photo .badge{
+    position:absolute; bottom:16px; left:16px; right:16px;
+    background:var(--surface); border-radius:var(--radius-md);
+    padding:14px 16px; box-shadow:var(--elev-2);
+    font-family:'Roboto Mono', monospace; font-size:0.82rem;
+    color:var(--on-surface-variant);
+  }
+  .hero-photo .badge b{ color:var(--on-surface); }
+
+  /* ---------- Stats ---------- */
+  .stats{
+    max-width:1120px; margin:48px auto 0; padding:0 24px;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+  }
+  .stat-card{
+    background:var(--primary-container); color:var(--on-primary-container);
+    border-radius:var(--radius-md); padding:22px 20px;
+    box-shadow:var(--elev-1);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .stat-card:hover{ transform:translateY(-4px); box-shadow:var(--elev-2); }
+  .stat-card .num{ font-family:'Roboto Mono', monospace; font-size:2.1rem; font-weight:700; }
+  .stat-card .label{ font-size:0.85rem; margin-top:4px; color:var(--on-primary-container); opacity:0.8; }
+  .stat-card:nth-child(2){ background:var(--secondary-container); color:var(--on-secondary-container); }
+  .stat-card:nth-child(3){ background:var(--primary-container); color:var(--on-primary-container); }
+  .stat-card:nth-child(4){ background:var(--secondary-container); color:var(--on-secondary-container); }
+
+  /* ---------- Section shell ---------- */
+  section{ max-width:1120px; margin:0 auto; padding:88px 24px; }
+  .section-head{ margin-bottom:40px; max-width:680px; }
+  .section-head .eyebrow{ margin-bottom:10px; }
+  .section-head h2{ font-size:2.1rem; font-weight:800; letter-spacing:-0.01em; }
+  .section-head p{ margin-top:12px; color:var(--on-surface-variant); font-size:1rem; }
+
+  /* ---------- About ---------- */
+  .about-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:48px; align-items:start; }
+  .about-grid p{ color:var(--on-surface-variant); margin-bottom:16px; }
+  .about-grid p b{ color:var(--on-surface); }
+  .chip-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .feature-chip{
+    background:var(--surface); border:1px solid var(--outline);
+    border-radius:var(--radius-md); padding:18px;
+    display:flex; align-items:flex-start; gap:12px;
+    box-shadow:var(--elev-1);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .feature-chip:hover{ transform:translateY(-3px); box-shadow:var(--elev-2); border-color:var(--primary); }
+  .feature-chip .icon{
+    width:40px; height:40px; border-radius:50%;
+    background:var(--primary-container); color:var(--primary-dark);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    font-size:1.1rem;
+  }
+  .feature-chip .txt{ font-size:0.92rem; font-weight:500; }
+
+  /* ---------- Experience ---------- */
+  .timeline{ position:relative; }
+  .exp-card{
+    background:var(--surface); border-radius:var(--radius-lg);
+    padding:32px; margin-bottom:24px; box-shadow:var(--elev-1);
+    border:1px solid var(--outline);
+    transition: box-shadow .2s, transform .2s;
+  }
+  .exp-card:hover{ box-shadow:var(--elev-2); transform:translateY(-2px); }
+  .exp-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    flex-wrap:wrap; gap:8px; margin-bottom:6px;
+  }
+  .exp-role{ font-size:1.2rem; font-weight:700; }
+  .exp-org{ color:var(--primary-dark); font-weight:600; font-size:0.95rem; }
+  .exp-period{
+    font-family:'Roboto Mono', monospace; font-size:0.78rem;
+    background:var(--surface-variant); padding:6px 12px; border-radius:100px;
+    color:var(--on-surface-variant); white-space:nowrap;
+  }
+  .exp-summary{ color:var(--on-surface-variant); margin:12px 0 16px; font-size:0.95rem; }
+  .exp-card ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .exp-card li{ display:flex; gap:10px; font-size:0.92rem; color:var(--on-surface); }
+  .exp-card li::before{
+    content:""; flex-shrink:0; margin-top:8px;
+    width:8px; height:8px; border-radius:50%; background:var(--primary);
+  }
+  .stack-row{ margin-top:18px; display:flex; flex-wrap:wrap; gap:8px; }
+  .stack-chip{
+    font-family:'Roboto Mono', monospace; font-size:0.74rem;
+    background:var(--surface-variant); color:var(--on-surface-variant);
+    padding:5px 12px; border-radius:100px; border:1px solid var(--outline);
+    transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .stack-chip:hover{
+    transform:translateY(-2px) scale(1.04);
+    background:var(--primary-container); color:var(--on-primary-container); border-color:var(--primary-container);
+  }
+
+  /* ---------- Projects ---------- */
+  .project-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+  .project-card{
+    background:var(--surface); border-radius:var(--radius-lg);
+    border:1px solid var(--outline); box-shadow:var(--elev-1);
+    padding:28px; display:flex; flex-direction:column; gap:14px;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .project-card:hover{ box-shadow:var(--elev-3); transform:translateY(-3px); }
+  .project-icon{
+    width:48px; height:48px; border-radius:var(--radius-sm);
+    background:var(--primary-container); color:var(--on-primary-container);
+    display:flex; align-items:center; justify-content:center; font-size:1.4rem;
+  }
+  .project-card h3{ font-size:1.1rem; font-weight:700; }
+  .project-tag{ font-family:'Roboto Mono', monospace; font-size:0.78rem; color:var(--secondary); font-weight:700; }
+  .project-card p{ color:var(--on-surface-variant); font-size:0.92rem; flex-grow:1; }
+  .project-metrics{ display:flex; gap:24px; }
+  .project-metrics div{ font-family:'Roboto Mono', monospace; }
+  .project-metrics .m-num{ font-size:1.3rem; font-weight:700; color:var(--primary-dark); }
+  .project-metrics .m-label{ font-size:0.7rem; color:var(--on-surface-variant); text-transform:uppercase; letter-spacing:0.06em; }
+  .project-links{ display:flex; gap:16px; font-size:0.85rem; font-weight:600; margin-top:4px; }
+  .project-links a{ color:var(--primary-dark); }
+  .project-links a:hover{ text-decoration:underline; }
+
+  /* ---------- Skills ---------- */
+  .skills-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  .skill-group{
+    background:var(--surface); border:1px solid var(--outline);
+    border-radius:var(--radius-md); padding:22px; box-shadow:var(--elev-1);
+  }
+  .skill-group h4{
+    font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em;
+    font-weight:700; color:var(--primary-dark); margin-bottom:14px;
+  }
+  .skill-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .skill-tag{
+    font-family:'Roboto Mono', monospace; font-size:0.78rem;
+    padding:6px 12px; border-radius:100px;
+    background:var(--secondary-container); color:var(--on-secondary-container);
+    transition: transform .15s ease, box-shadow .15s ease;
+    cursor:default;
+  }
+  .skill-tag:hover{ transform:translateY(-2px) scale(1.05); box-shadow:var(--elev-1); }
+  .skill-group:nth-child(odd) .skill-tag{ background:var(--primary-container); color:var(--on-primary-container); }
+
+  /* ---------- Contact / Footer ---------- */
+  .contact-card{
+    background:var(--primary); color:var(--on-primary);
+    border-radius:var(--radius-lg); padding:56px;
+    text-align:center; box-shadow:var(--elev-3);
+  }
+  .contact-card h2{ font-size:2rem; font-weight:800; }
+  .contact-card p{ margin-top:10px; opacity:0.85; font-size:1rem; }
+  .contact-actions{ margin-top:28px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .contact-card .btn-filled{ background:var(--surface); color:var(--primary-dark); }
+  .contact-card .btn-filled:hover{ background:var(--surface-dim); }
+  .contact-card .btn-outline{ border-color:rgba(255,255,255,0.4); color:var(--on-primary); }
+  .contact-card .btn-outline:hover{ background:rgba(255,255,255,0.12); }
+
+  footer{
+    text-align:center; padding:32px 24px; font-size:0.85rem;
+    color:var(--on-surface-variant);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 880px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero h1{ font-size:2.4rem; }
+    .hero-photo{ order:-1; max-width:280px; margin:0 auto; }
+    .stats{ grid-template-columns:repeat(2,1fr); }
+    .about-grid{ grid-template-columns:1fr; }
+    .chip-grid{ grid-template-columns:1fr; }
+    .project-grid{ grid-template-columns:1fr; }
+    .skills-grid{ grid-template-columns:1fr; }
+    .nav-links{ display:none; }
+    .contact-card{ padding:36px 24px; }
+    .contact-card h2{ font-size:1.5rem; }
+  }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo" onclick="showPage('home')">NARENDRA</div>
-  <div class="nav-links">
-    <div class="nav-link active" id="nav-home" onclick="showPage('home')">Home</div>
-    <div class="nav-link" id="nav-projects" onclick="showPage('projects')">Projects</div>
-    <div class="nav-link" id="nav-contact" onclick="scrollContact()">Contact</div>
-  </div>
-</nav>
-
-<!-- ═══════════════ HOME ═══════════════ -->
-<div class="page active" id="page-home">
-
-<div class="hero">
-  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:48px;">
-
-    <!-- LEFT -->
-    <div style="flex:1;min-width:280px;">
-      <h1 class="hero-name">
-        Narendra<span class="hn-blue">Reddy</span>
-      </h1>
-      <div class="hero-role">
-        <span class="role-pill rp1">AI/ML Engineer</span>
-        <span class="role-pill rp2">Generative AI Specialist</span>
-        <span class="role-pill rp3">LLM / RAG Expert</span>
+  <!-- App bar -->
+  <header class="appbar">
+    <div class="appbar-inner">
+      <div class="brand">
+        <div class="brand-mark">NR</div>
+        Narendra Reddy
       </div>
-      <p class="hero-desc">Building <strong>end-to-end ML pipelines</strong>, <strong>LLM-powered RAG applications</strong>, and <strong>agentic workflows</strong> at enterprise scale. 5 years turning complex data into production AI systems across AWS Bedrock, GCP Vertex AI, and Azure Databricks.</p>
-      <div class="hero-stats">
-        <div class="stat"><div class="stat-num sn1">5</div><div class="stat-label">Years Exp.</div></div>
-        <div class="stat"><div class="stat-num sn2">40%</div><div class="stat-label">Effort Reduced</div></div>
-        <div class="stat"><div class="stat-num sn3">85%</div><div class="stat-label">ML Accuracy</div></div>
-        <div class="stat"><div class="stat-num sn4">3</div><div class="stat-label">Cloud Platforms</div></div>
-      </div>
-      <div class="cta-row">
-        <a class="btn-primary" href="mailto:narendramangunuru@gmail.com">Hire Me →</a>
-        <div class="btn-outline" onclick="showPage('projects')">View Projects</div>
-      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- RIGHT: photo with spinning ring + green glow dot -->
-    <div class="hero-photo-col" style="flex-shrink:0;display:flex;justify-content:center;align-items:center;">
-      <div style="position:relative;width:270px;height:270px;">
-        <!-- spinning soft rainbow ring -->
-        <div style="position:absolute;inset:-5px;border-radius:50%;background:conic-gradient(#B8D4E8,#C4B8D8,#A8D4C8,#E8C4A8,#D8B8C8,#B8D4E8);animation:spin 5s linear infinite;z-index:0;"></div>
-        <!-- gap -->
-        <div style="position:absolute;inset:0;border-radius:50%;background:#F8F6F2;z-index:1;"></div>
-        <!-- photo -->
-        <div style="position:absolute;inset:5px;border-radius:50%;overflow:hidden;z-index:2;box-shadow:0 8px 32px rgba(44,44,58,0.12);">
-          <img src="photo.png" alt="Narendra Reddy" style="width:100%;height:100%;object-fit:cover;object-position:center top;"/>
+  <!-- Hero -->
+  <section class="hero" id="top" style="padding-top:56px;">
+    <div class="hero-grid reveal">
+      <div>
+        <div class="eyebrow">AI/ML Engineer · Generative AI · LLM / RAG</div>
+        <h1>Narendra <span>Reddy</span></h1>
+        <div class="hero-roles">
+          AI/ML Engineer <span class="sep">·</span> Generative AI Specialist <span class="sep">·</span> LLM / RAG Expert
         </div>
-        <!-- glowing green dot -->
-        <div style="position:absolute;bottom:18px;right:14px;z-index:10;width:20px;height:20px;">
-          <div style="position:absolute;inset:-8px;border-radius:50%;background:rgba(107,191,142,0.15);animation:greenPulse 2s ease-in-out infinite;"></div>
-          <div style="position:absolute;inset:-4px;border-radius:50%;background:rgba(107,191,142,0.25);animation:greenPulse 2s ease-in-out infinite 0.3s;"></div>
-          <div style="width:20px;height:20px;border-radius:50%;background:#6BBF8E;border:3px solid #F8F6F2;box-shadow:0 0 8px #6BBF8E,0 0 16px rgba(107,191,142,0.5);animation:greenGlow 2s ease-in-out infinite;"></div>
+        <p class="lede">
+          Building end-to-end ML pipelines, LLM-powered RAG applications, and agentic workflows at enterprise scale.
+          5 years turning complex data into production AI systems across AWS Bedrock, GCP Vertex AI, and Azure Databricks.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-filled" href="mailto:narendramangunuru@gmail.com">Hire Me →</a>
+          <a class="btn btn-outline" href="#projects">View Projects</a>
         </div>
       </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- TICKER -->
-<div class="ticker-wrap"><div class="ticker-track" id="ticker"></div></div>
-
-<!-- ABOUT -->
-<div class="section">
-  <div class="sec-label"><span class="sec-label-text sl1">About Me</span><div class="sec-label-line"></div></div>
-  <div class="about-layout">
-    <div>
-      <h2 class="sec-title">AI/ML engineer with a bias for production.</h2>
-      <div class="about-body">
-        <p>I'm an AI/ML Engineer with <strong>5 years</strong> building enterprise machine learning systems and Generative AI solutions. My work spans the full ML lifecycle — raw data ingestion through deployed, monitored models running at scale.</p>
-        <p>At <strong>Paychex</strong>, I design LLM-powered pipelines with LangChain + RAG, reducing document processing by 35% and improving fraud detection precision by 22%. At <strong>QVC</strong>, I built recommendation engines and NLP categorization systems processing <strong>50M+ records daily</strong>.</p>
-        <p>I treat <strong>responsible AI</strong> as a first-class constraint — prompt injection guardrails, hallucination reduction, fairness and explainability ship with every model.</p>
+      <div class="hero-photo">
+        <img src="https://narendrareddy5c4.github.io/photo.png" alt="Narendra Reddy">
+        <div class="badge"><b>Irving, TX</b> · Open to Senior AI/ML &amp; GenAI roles</div>
       </div>
     </div>
-    <div class="comp-grid">
-      <div class="comp-card cc1"><div class="comp-icon ci1">🤖</div><span class="comp-text">Generative AI &amp; LLM Engineering</span></div>
-      <div class="comp-card cc2"><div class="comp-icon ci2">🔍</div><span class="comp-text">RAG &amp; Agentic Workflows</span></div>
-      <div class="comp-card cc3"><div class="comp-icon ci3">📊</div><span class="comp-text">ML Pipelines &amp; MLOps</span></div>
-      <div class="comp-card cc4"><div class="comp-icon ci4">⚡</div><span class="comp-text">Big Data — PySpark, Kafka, Hadoop</span></div>
-      <div class="comp-card cc5"><div class="comp-icon ci5">☁️</div><span class="comp-text">AWS Bedrock · GCP Vertex · Azure</span></div>
-      <div class="comp-card cc6"><div class="comp-icon ci6">🛡️</div><span class="comp-text">LLM Security &amp; Responsible AI</span></div>
-    </div>
-  </div>
-</div>
+  </section>
 
-<!-- EXPERIENCE -->
-<div class="section" style="background:#fff;max-width:100%;padding:72px 0;">
-<div style="max-width:1100px;margin:0 auto;padding:0 48px;">
-  <div class="sec-label"><span class="sec-label-text sl2">Experience</span><div class="sec-label-line"></div></div>
-  <h2 class="sec-title">Where I've shipped AI.</h2>
-  <div class="exp-list">
-    <div class="exp-card ec-paychex">
-      <div class="exp-top"><span class="exp-company-badge eb1">Paychex · Rochester, NY</span><span class="exp-dates">Dec 2024 – Present</span></div>
-      <div class="exp-role">AI/ML Engineer — Generative AI &amp; Scalable Systems</div>
-      <p class="exp-desc">Designing end-to-end AI/ML pipelines for classification, anomaly detection, and predictive analytics across high-volume financial datasets.</p>
-      <ul class="exp-bullets b1">
-        <li>Built LLM-powered GenAI solutions using LangChain + RAG for automated claims analysis — GPT &amp; Gemini APIs with enterprise data, reducing processing turnaround by 35%.</li>
-        <li>Developed multi-agent agentic workflows with LangGraph; implemented prompt injection guardrails and hallucination reduction for responsible AI compliance.</li>
-        <li>Deployed containerized AI/ML models on AWS Bedrock, SageMaker &amp; GCP Vertex AI with MLFlow versioning, drift analysis, and automated retraining pipelines.</li>
-        <li>Built PySpark + Kafka pipelines for millions of financial transactions — reduced manual review 40%, improved fraud detection precision by 22%.</li>
-      </ul>
-      <div class="tag-row"><span class="tag t1">Python</span><span class="tag t1">LangChain</span><span class="tag t1">LangGraph</span><span class="tag t1">RAG</span><span class="tag t1">PySpark</span><span class="tag t1">AWS Bedrock</span><span class="tag t1">GCP Vertex AI</span><span class="tag t1">MLFlow</span><span class="tag t1">Kafka</span><span class="tag t1">Snowflake</span></div>
-    </div>
-    <div class="exp-card ec-qvc">
-      <div class="exp-top"><span class="exp-company-badge eb2">QVC / Qurate Retail · West Chester, PA</span><span class="exp-dates">Oct 2022 – Nov 2024</span></div>
-      <div class="exp-role">AI/ML Engineer — ML Platform &amp; Cloud Services</div>
-      <p class="exp-desc">Designed and deployed Python-based ML recommendation models and NLP-driven product categorization systems into production microservices.</p>
-      <ul class="exp-bullets b2">
-        <li>Built RAG-based document retrieval pipelines using LangChain + OpenAI APIs; prompt engineering for product description generation — recommendation accuracy +15%.</li>
-        <li>Developed large-scale ETL + feature engineering pipelines using PySpark &amp; BigQuery processing 50M+ records daily for ML model training.</li>
-        <li>Implemented full MLOps — MLFlow versioning, A/B testing, drift monitoring, automated CI/CD for ML models via Docker, Kubernetes &amp; GitHub Actions.</li>
-        <li>Automated regression testing, cutting manual effort by 35%; led Spring Boot 2.7 → 3.3.5 upgrade with zero downtime.</li>
-      </ul>
-      <div class="tag-row"><span class="tag t2">Python</span><span class="tag t2">PySpark</span><span class="tag t2">LangChain</span><span class="tag t2">BigQuery</span><span class="tag t2">Azure Databricks</span><span class="tag t2">MLFlow</span><span class="tag t2">Docker</span><span class="tag t2">Kubernetes</span><span class="tag t2">Scikit-learn</span></div>
-    </div>
-    <div class="exp-card ec-inn">
-      <div class="exp-top"><span class="exp-company-badge eb3">Innominds · Hyderabad, India</span><span class="exp-dates">Nov 2019 – Jun 2021</span></div>
-      <div class="exp-role">Associate Software Engineer — AI/ML &amp; Backend</div>
-      <p class="exp-desc">Built multi-tier back-end applications and Python ETL pipelines for data validation, statistical analysis, and reporting.</p>
-      <ul class="exp-bullets b3">
-        <li>Developed Python automation pipelines for ETL workflows using Pandas and NumPy; built statistical analysis scripts for data quality and reporting.</li>
-        <li>Created comprehensive test suites with JUnit/Mockito — 90% code coverage, 15% reduction in defect escape rates.</li>
-      </ul>
-      <div class="tag-row"><span class="tag t3">Java 8</span><span class="tag t3">Python</span><span class="tag t3">Pandas</span><span class="tag t3">NumPy</span><span class="tag t3">Spring MVC</span><span class="tag t3">Oracle DB</span><span class="tag t3">Docker</span></div>
-    </div>
+  <!-- Stats -->
+  <div class="stats reveal-stagger">
+    <div class="stat-card"><div class="num">5</div><div class="label">Years Exp.</div></div>
+    <div class="stat-card"><div class="num">40%</div><div class="label">Effort Reduced</div></div>
+    <div class="stat-card"><div class="num">85%</div><div class="label">ML Accuracy</div></div>
+    <div class="stat-card"><div class="num">3</div><div class="label">Cloud Platforms</div></div>
   </div>
-</div>
-</div>
 
-<!-- PROJECTS -->
-<div class="section">
-  <div class="sec-label"><span class="sec-label-text sl3">Projects</span><div class="sec-label-line"></div></div>
-  <h2 class="sec-title">Things I've built.</h2>
-  <div class="proj-grid">
-    <div class="proj-card pc1" onclick="showProjectDetail('churn')">
-      <div class="proj-icon pi1">📊</div>
-      <div><div class="proj-title">Telecom Churn Prediction</div><div class="proj-sub ps1">ML · Python · Scikit-learn</div></div>
-      <p class="proj-desc">End-to-end ML pipeline with Decision Tree, Random Forest, and KNN. Full EDA, 10-fold cross-validation, ROC-AUC evaluation, MLFlow tracking, and Docker deployment.</p>
-      <div class="proj-metrics"><div><div class="pm-val pm1">85%</div><div class="pm-label">Accuracy</div></div><div><div class="pm-val pm1">0.88</div><div class="pm-label">ROC-AUC</div></div></div>
-      <div class="tag-row"><span class="tag t1">Python</span><span class="tag t1">Scikit-learn</span><span class="tag t1">Pandas</span><span class="tag t1">MLFlow</span></div>
-      <div class="proj-actions"><div class="btn-sm bsm1">View Details →</div><a class="btn-sm bsm-ghost live-demo"
-       href="https://telecom-customer-churn-zvmeytufoxmmkfcss4hdnw.streamlit.app/"
-       target="_blank"
-       onclick="event.stopPropagation()">
-       <span class="live-dot"></span>
-       Live Demo ↗
-    </a><a class="btn-sm bsm-ghost" href="https://github.com/Narendrareddy5c4/Telecom-Customer-Churn" target="_blank" onclick="event.stopPropagation()">GitHub ↗</a></div>
+  <!-- About -->
+  <section id="about">
+    <div class="section-head">
+      <div class="eyebrow">About Me</div>
+      <h2>AI/ML engineer with a bias for production.</h2>
+      <p>I'm an AI/ML Engineer with 5 years building enterprise machine learning systems and Generative AI solutions, spanning the full ML lifecycle — raw data ingestion through deployed, monitored models running at scale.</p>
     </div>
-    <div class="proj-card pc2" onclick="showProjectDetail('genai')">
-      <div class="proj-icon pi2">🧠</div>
-      <div><div class="proj-title">GenAI Document Intelligence</div><div class="proj-sub ps2">LangChain · RAG · GPT API · FAISS</div></div>
-      <p class="proj-desc">Enterprise RAG pipeline for document Q&amp;A with FAISS vector search, prompt injection guardrails, hallucination reduction, and LangGraph agentic workflows.</p>
-      <div class="proj-metrics"><div><div class="pm-val pm2">35%</div><div class="pm-label">Faster Processing</div></div><div><div class="pm-val pm2">RAG</div><div class="pm-label">Architecture</div></div></div>
-      <div class="tag-row"><span class="tag t2">LangChain</span><span class="tag t2">GPT API</span><span class="tag t2">FAISS</span><span class="tag t2">RAG</span></div>
-      <div class="proj-actions"><div class="btn-sm bsm2">View Details →</div></div>
+    <div class="about-grid reveal">
+      <div>
+        <p>At <b>Paychex</b>, I design LLM-powered pipelines with LangChain + RAG, reducing document processing time by 35% and improving fraud detection precision by 22%.</p>
+        <p>At <b>QVC</b>, I built recommendation engines and NLP categorization systems processing <b>50M+ records daily</b>, optimizing ranking and relevance across search and discovery surfaces.</p>
+        <p>I treat <b>responsible AI</b> as a first-class constraint — prompt injection guardrails, hallucination reduction, fairness, and explainability ship with every model I build.</p>
+      </div>
+      <div class="chip-grid reveal-stagger">
+        <div class="feature-chip"><div class="icon">🤖</div><div class="txt">Generative AI &amp; LLM Engineering</div></div>
+        <div class="feature-chip"><div class="icon">🔍</div><div class="txt">RAG &amp; Agentic Workflows</div></div>
+        <div class="feature-chip"><div class="icon">📊</div><div class="txt">ML Pipelines &amp; MLOps</div></div>
+        <div class="feature-chip"><div class="icon">⚡</div><div class="txt">Big Data — PySpark, Kafka, Hadoop</div></div>
+        <div class="feature-chip"><div class="icon">☁️</div><div class="txt">AWS Bedrock · GCP Vertex · Azure</div></div>
+        <div class="feature-chip"><div class="icon">🛡️</div><div class="txt">LLM Security &amp; Responsible AI</div></div>
+      </div>
     </div>
-    <div class="proj-card pc3" onclick="showProjectDetail('chairstore')">
-      <div class="proj-icon pi3">🪑</div>
-      <div><div class="proj-title">ChairStore — Full Stack App</div><div class="proj-sub ps3">Python · Flask · SQLite · OAuth2</div></div>
-      <p class="proj-desc">Full-stack e-commerce catalog with Google OAuth2 auth, CRUD operations, REST JSON API endpoints, and Vagrant/VirtualBox deployment. Udacity FSND Capstone.</p>
-      <div class="tag-row"><span class="tag t3">Python</span><span class="tag t3">Flask</span><span class="tag t3">SQLite</span><span class="tag t3">Google OAuth2</span></div>
-      <div class="proj-actions"><div class="btn-sm bsm3">View Details →</div><a class="btn-sm bsm-ghost live-demo"
-       href="https://chairstore.onrender.com/"
-       target="_blank"
-       onclick="event.stopPropagation()">
-       <span class="live-dot"></span>
-       Live Demo ↗
-    </a><a class="btn-sm bsm-ghost" href="https://github.com/Narendrareddy5c4/ChairStore" target="_blank" onclick="event.stopPropagation()">GitHub ↗</a></div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" style="background:var(--surface);">
+    <div class="section-head">
+      <div class="eyebrow">Experience</div>
+      <h2>Where I've shipped AI.</h2>
     </div>
-    <div class="proj-card pc4" onclick="showProjectDetail('react')">
-      <div class="proj-icon pi4">⚛️</div>
-      <div><div class="proj-title">React Learning Projects</div><div class="proj-sub ps4">React.js · TypeScript · Hooks</div></div>
-      <p class="proj-desc">Collection of production-quality React apps covering Hooks, component architecture, React Router SPA navigation, state management, and responsive ES6+ patterns.</p>
-      <div class="tag-row"><span class="tag t1">React.js</span><span class="tag t1">TypeScript</span><span class="tag t1">React Router</span><span class="tag t1">Hooks</span></div>
-      <div class="proj-actions"><div class="btn-sm bsm4">View Details →</div><a class="btn-sm bsm-ghost" href="https://github.com/Narendrareddy5c4/ReactLearning" target="_blank" onclick="event.stopPropagation()">GitHub ↗</a></div>
+    <div class="timeline reveal-stagger">
+
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <div class="exp-role">AI/ML Engineer — Generative AI &amp; Scalable Systems</div>
+            <div class="exp-org">Paychex · Rochester, NY</div>
+          </div>
+          <div class="exp-period">Dec 2024 – Present</div>
+        </div>
+        <div class="exp-summary">Designing end-to-end AI/ML pipelines for classification, anomaly detection, and predictive analytics across high-volume financial datasets.</div>
+        <ul>
+          <li>Built LLM-powered GenAI solutions using LangChain + RAG for automated claims analysis — GPT &amp; Gemini APIs with enterprise data, reducing processing turnaround by 35%.</li>
+          <li>Developed multi-agent agentic workflows with LangGraph; implemented prompt injection guardrails and hallucination reduction for responsible AI compliance.</li>
+          <li>Deployed containerized AI/ML models on AWS Bedrock, SageMaker &amp; GCP Vertex AI with MLFlow versioning, drift analysis, and automated retraining pipelines.</li>
+          <li>Built PySpark + Kafka pipelines for millions of financial transactions — reduced manual review 40%, improved fraud detection precision by 22%.</li>
+        </ul>
+        <div class="stack-row">
+          <span class="stack-chip">Python</span><span class="stack-chip">LangChain</span><span class="stack-chip">LangGraph</span>
+          <span class="stack-chip">RAG</span><span class="stack-chip">PySpark</span><span class="stack-chip">AWS Bedrock</span>
+          <span class="stack-chip">GCP Vertex AI</span><span class="stack-chip">MLFlow</span><span class="stack-chip">Kafka</span><span class="stack-chip">Snowflake</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <div class="exp-role">AI/ML Engineer — ML Platform &amp; Cloud Services</div>
+            <div class="exp-org">QVC / Qurate Retail · West Chester, PA</div>
+          </div>
+          <div class="exp-period">Oct 2022 – Nov 2024</div>
+        </div>
+        <div class="exp-summary">Designed and deployed Python-based ML recommendation models and NLP-driven product categorization systems into production microservices.</div>
+        <ul>
+          <li>Built RAG-based document retrieval pipelines using LangChain + OpenAI APIs; prompt engineering for product description generation and query understanding — recommendation accuracy +15%.</li>
+          <li>Developed large-scale ETL + feature engineering pipelines using PySpark &amp; BigQuery, processing 50M+ records daily for ranking and ML model training.</li>
+          <li>Implemented full MLOps — MLFlow versioning, online experimentation/A-B testing, drift monitoring, automated CI/CD for ML models via Docker, Kubernetes &amp; GitHub Actions.</li>
+          <li>Automated regression testing, cutting manual effort by 35%; led Spring Boot 2.7 → 3.3.5 upgrade with zero downtime.</li>
+        </ul>
+        <div class="stack-row">
+          <span class="stack-chip">Python</span><span class="stack-chip">PySpark</span><span class="stack-chip">LangChain</span>
+          <span class="stack-chip">BigQuery</span><span class="stack-chip">Azure Databricks</span><span class="stack-chip">MLFlow</span>
+          <span class="stack-chip">Docker</span><span class="stack-chip">Kubernetes</span><span class="stack-chip">Scikit-learn</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <div class="exp-role">Associate Software Engineer — AI/ML &amp; Backend</div>
+            <div class="exp-org">Innominds · Hyderabad, India</div>
+          </div>
+          <div class="exp-period">Nov 2019 – Jun 2021</div>
+        </div>
+        <div class="exp-summary">Built multi-tier back-end applications and Python ETL pipelines for data validation, statistical analysis, and reporting.</div>
+        <ul>
+          <li>Developed Python automation pipelines for ETL workflows using Pandas and NumPy; built statistical analysis scripts for data quality and reporting.</li>
+          <li>Created comprehensive test suites with JUnit/Mockito — 90% code coverage, 15% reduction in defect escape rates.</li>
+        </ul>
+        <div class="stack-row">
+          <span class="stack-chip">Java 8</span><span class="stack-chip">Python</span><span class="stack-chip">Pandas</span>
+          <span class="stack-chip">NumPy</span><span class="stack-chip">Spring MVC</span><span class="stack-chip">Oracle DB</span><span class="stack-chip">Docker</span>
+        </div>
+      </div>
+
     </div>
-  </div>
-  <div style="text-align:center;margin-top:32px;"><div class="btn-outline" style="cursor:pointer;display:inline-block;" onclick="showPage('projects')">All Projects →</div></div>
-</div>
+  </section>
 
-<!-- SKILLS -->
-<div class="section" style="background:#fff;max-width:100%;padding:72px 0;">
-<div style="max-width:1100px;margin:0 auto;padding:0 48px;">
-  <div class="sec-label"><span class="sec-label-text sl4">Skills</span><div class="sec-label-line"></div></div>
-  <h2 class="sec-title">My tech stack.</h2>
-  <div class="skills-grid">
-    <div class="sg sg1"><div class="sg-title"><div class="sg-dot sd1"></div><span class="st1">Generative AI &amp; LLMs</span></div><div class="chips"><span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">RAG Pipelines</span><span class="chip">GPT-4 API</span><span class="chip">Gemini</span><span class="chip">LLaMA</span><span class="chip">HuggingFace</span><span class="chip">Prompt Engineering</span></div></div>
-    <div class="sg sg2"><div class="sg-title"><div class="sg-dot sd2"></div><span class="st2">ML &amp; Data Science</span></div><div class="chips"><span class="chip">Scikit-learn</span><span class="chip">TensorFlow</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">PySpark</span><span class="chip">MLFlow</span><span class="chip">Jupyter</span></div></div>
-    <div class="sg sg3"><div class="sg-title"><div class="sg-dot sd3"></div><span class="st3">Cloud AI Platforms</span></div><div class="chips"><span class="chip">AWS Bedrock</span><span class="chip">SageMaker</span><span class="chip">GCP Vertex AI</span><span class="chip">Azure Databricks</span><span class="chip">BigQuery</span><span class="chip">Azure ML Studio</span></div></div>
-    <div class="sg sg4"><div class="sg-title"><div class="sg-dot sd4"></div><span class="st4">Big Data &amp; Databases</span></div><div class="chips"><span class="chip">PySpark</span><span class="chip">Kafka</span><span class="chip">Snowflake</span><span class="chip">BigQuery</span><span class="chip">PostgreSQL</span><span class="chip">Oracle DB</span><span class="chip">Cosmos DB</span></div></div>
-    <div class="sg sg5"><div class="sg-title"><div class="sg-dot sd5"></div><span class="st5">Backend &amp; APIs</span></div><div class="chips"><span class="chip">Java 8–21</span><span class="chip">Python</span><span class="chip">Spring Boot</span><span class="chip">Flask</span><span class="chip">REST APIs</span><span class="chip">OAuth 2.0</span><span class="chip">JWT</span></div></div>
-    <div class="sg sg6"><div class="sg-title"><div class="sg-dot sd6"></div><span class="st6">DevOps &amp; CI/CD</span></div><div class="chips"><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Terraform</span><span class="chip">GitHub Actions</span><span class="chip">Jenkins</span><span class="chip">Azure DevOps</span></div></div>
-  </div>
-</div>
-</div>
-
-<div class="contact-sec" id="contact-anchor">
-  <h2>Let's build something <span>remarkable.</span></h2>
-  <p>Open to senior AI/ML Engineer, Generative AI, and Data Engineering roles</p>
-  <div class="contact-links">
-    <a class="cl cl1" href="mailto:narendramangunuru@gmail.com">✉ narendramangunuru@gmail.com</a>
-    <a class="cl cl2" href="tel:9133888995">☎ 913-388-8995</a>
-    <a class="cl cl3" href="https://www.linkedin.com/in/narendrareddy-mang-81746924b/" target="_blank">in LinkedIn ↗</a>
-    <a class="cl cl4" href="https://github.com/Narendrareddy5c4" target="_blank">◈ GitHub ↗</a>
-  </div>
-</div>
-<footer><p>Designed &amp; built by <span>Narendra Reddy</span> · AI/ML Engineer · Irving, TX</p></footer>
-</div>
-
-<!-- ═══════════════ PROJECTS PAGE ═══════════════ -->
-<div class="page" id="page-projects">
-<div class="section" style="padding-top:110px;">
-  <div class="sec-label"><span class="sec-label-text sl3">All Projects</span><div class="sec-label-line"></div></div>
-  <h2 class="sec-title">Things I've built.</h2>
-  <div class="proj-grid">
-    <div class="proj-card pc1" onclick="showProjectDetail('churn')"><div class="proj-icon pi1">📊</div><div><div class="proj-title">Telecom Churn Prediction</div><div class="proj-sub ps1">ML · Python · Scikit-learn</div></div><p class="proj-desc">End-to-end ML pipeline with Decision Tree, Random Forest, KNN. Full EDA, 10-fold cross-validation, ROC-AUC, MLFlow tracking &amp; Docker deployment.</p><div class="proj-metrics"><div><div class="pm-val pm1">85%</div><div class="pm-label">Accuracy</div></div><div><div class="pm-val pm1">0.88</div><div class="pm-label">ROC-AUC</div></div></div><div class="tag-row"><span class="tag t1">Python</span><span class="tag t1">Scikit-learn</span><span class="tag t1">Pandas</span><span class="tag t1">MLFlow</span></div><div class="proj-actions"><div class="btn-sm bsm1">View Details →</div><a class="btn-sm bsm-ghost" href="https://github.com/Narendrareddy5c4/Telecom-Customer-Churn" target="_blank" onclick="event.stopPropagation()">GitHub ↗</a></div></div>
-    <div class="proj-card pc2" onclick="showProjectDetail('genai')"><div class="proj-icon pi2">🧠</div><div><div class="proj-title">GenAI Document Intelligence</div><div class="proj-sub ps2">LangChain · RAG · GPT API</div></div><p class="proj-desc">Production RAG pipeline for enterprise document Q&amp;A. FAISS vector search, LangGraph agents, prompt injection guardrails, responsible AI compliance.</p><div class="proj-metrics"><div><div class="pm-val pm2">35%</div><div class="pm-label">Faster</div></div><div><div class="pm-val pm2">RAG</div><div class="pm-label">Architecture</div></div></div><div class="tag-row"><span class="tag t2">LangChain</span><span class="tag t2">GPT API</span><span class="tag t2">FAISS</span></div><div class="proj-actions"><div class="btn-sm bsm2">View Details →</div></div></div>
-    <div class="proj-card pc3" onclick="showProjectDetail('chairstore')"><div class="proj-icon pi3">🪑</div><div><div class="proj-title">ChairStore — Full Stack</div><div class="proj-sub ps3">Python · Flask · OAuth2</div></div><p class="proj-desc">Full-stack catalog app with Google OAuth2 auth, CRUD management, REST JSON API endpoints, Vagrant/VirtualBox deployment. Udacity Capstone.</p><div class="tag-row"><span class="tag t3">Python</span><span class="tag t3">Flask</span><span class="tag t3">SQLite</span><span class="tag t3">OAuth2</span></div><div class="proj-actions"><div class="btn-sm bsm3">View Details →</div><a class="btn-sm bsm-ghost" href="https://github.com/Narendrareddy5c4/ChairStore" target="_blank" onclick="event.stopPropagation()">GitHub ↗</a></div></div>
-    <div class="proj-card pc4" onclick="showProjectDetail('react')"><div class="proj-icon pi4">⚛️</div><div><div class="proj-title">React Learning Projects</div><div class="proj-sub ps4">React.js · TypeScript · Hooks</div></div><p class="proj-desc">Production-quality React apps — Hooks, component architecture, React Router SPA navigation, state management, and responsive CSS Grid/Flexbox patterns.</p><div class="tag-row"><span class="tag t1">React.js</span><span class="tag t1">TypeScript</span><span class="tag t1">React Router</span></div><div class="proj-actions"><div class="btn-sm bsm4">View Details →</div><a class="btn-sm bsm-ghost" href="https://github.com/Narendrareddy5c4/ReactLearning" target="_blank" onclick="event.stopPropagation()">GitHub ↗</a></div></div>
-  </div>
-</div>
-<div class="contact-sec"><h2>Let's build something <span>remarkable.</span></h2><p>Open to AI/ML and Generative AI roles — Irving, TX or remote.</p><div class="contact-links"><a class="cl cl1" href="mailto:narendramangunuru@gmail.com">✉ Email</a><a class="cl cl3" href="https://www.linkedin.com/in/narendrareddy-mang-81746924b/" target="_blank">in LinkedIn ↗</a><a class="cl cl4" href="https://github.com/Narendrareddy5c4" target="_blank">◈ GitHub ↗</a></div></div>
-<footer><p>Built by <span>Narendra Reddy</span> · Irving, TX</p></footer>
-</div>
-
-<!-- ═══════════════ DETAIL: CHURN ═══════════════ -->
-<div class="page" id="page-churn">
-<div class="pd-wrap">
-  <div class="back-btn" onclick="goBack()">← Back</div>
-  <div class="pd-eyebrow sl1">Machine Learning · Python · Scikit-learn · MLFlow</div>
-  <h1 class="pd-title">Telecom Customer <a class="btn-sm bsm-ghost live-demo"
-       href="https://telecom-customer-churn-zvmeytufoxmmkfcss4hdnw.streamlit.app/"
-       target="_blank"
-       onclick="event.stopPropagation()">
-       <span class="live-dot"></span>
-       Live Demo ↗
-    </a><br>Churn Prediction</h1>
-  <p class="pd-desc">An end-to-end ML pipeline predicting telecom customer churn — identifying key risk factors to enable targeted retention strategies. Achieved 85% accuracy and 0.88 ROC-AUC with Random Forest.</p>
-  <div class="pd-stats">
-    <div class="pd-stat"><div class="pd-stat-val pv1">85%</div><div class="pd-stat-label">Model Accuracy</div></div>
-    <div class="pd-stat"><div class="pd-stat-val pv2">0.88</div><div class="pd-stat-label">ROC-AUC Score</div></div>
-    <div class="pd-stat"><div class="pd-stat-val pv3">10-fold</div><div class="pd-stat-label">Cross-Validation</div></div>
-    <div class="pd-stat"><div class="pd-stat-val pv4">3</div><div class="pd-stat-label">ML Algorithms</div></div>
-  </div>
-  <div class="pd-tags"><span class="tag t1">Python</span><span class="tag t1">Scikit-learn</span><span class="tag t1">Pandas</span><span class="tag t1">NumPy</span><span class="tag t2">Matplotlib</span><span class="tag t2">Seaborn</span><span class="tag t3">MLFlow</span><span class="tag t3">Docker</span><span class="tag t1">Jupyter</span></div>
-  <div class="pd-section">
-    <div class="pd-sec-title">Problem &amp; Objectives</div>
-    <div class="feat-grid">
-      <div class="feat f1"><div class="feat-icon">💸</div><div class="feat-title">Revenue Protection</div><div class="feat-text">Customer churn causes significant revenue loss. Predicting churn early enables proactive retention before customers leave.</div></div>
-      <div class="feat f2"><div class="feat-icon">🎯</div><div class="feat-title">Key Factor Identification</div><div class="feat-text">Identify main churn drivers — contract type, monthly charges, tenure, service packages — to inform product decisions.</div></div>
-      <div class="feat f3"><div class="feat-icon">⚖️</div><div class="feat-title">Algorithm Comparison</div><div class="feat-text">Evaluate Decision Tree, Random Forest, and KNN to identify the best model for real-time production deployment.</div></div>
-      <div class="feat f4"><div class="feat-icon">🚀</div><div class="feat-title">MLOps Ready</div><div class="feat-text">MLFlow experiment tracking, model versioning, Docker containerization for reproducible, production-ready deployment.</div></div>
+  <!-- Projects -->
+  <section id="projects">
+    <div class="section-head">
+      <div class="eyebrow">Projects</div>
+      <h2>Things I've built.</h2>
     </div>
-  </div>
-  <div class="pd-section">
-    <div class="pd-sec-title">Methodology</div>
-    <div class="steps">
-      <div class="step"><div class="step-num sn-a">1</div><div class="step-body"><div class="step-title">Data Collection &amp; EDA</div><div class="step-text">Dataset includes customer contract info, network logs, service packages, and DB records. EDA on categorical (Partner, Dependents, Services) and continuous variables (Tenure, MonthlyCharges). Correlation heatmaps to visualize interdependencies.</div></div></div>
-      <div class="step"><div class="step-num sn-b">2</div><div class="step-body"><div class="step-title">Data Cleaning &amp; Feature Engineering</div><div class="step-text">Data cleaning, feature selection, stratified train/test splitting to maintain class balance. Feature scaling and categorical encoding.</div></div></div>
-      <div class="step"><div class="step-num sn-c">3</div><div class="step-body"><div class="step-title">Model Training &amp; Evaluation</div><div class="step-text">Trained Decision Tree, Random Forest, and KNN with 10-fold cross-validation. Evaluated with confusion matrices and ROC-AUC curves.<div class="code-block">from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import cross_val_score
+    <div class="project-grid reveal-stagger">
 
-rf = RandomForestClassifier(n_estimators=100, random_state=42)
-scores = cross_val_score(rf, X_train, y_train, cv=10)
-print(f"Accuracy: {scores.mean():.2f}")  # → 0.85
-# ROC-AUC: 0.88 — Best performing model</div></div></div></div>
-      <div class="step"><div class="step-num sn-d">4</div><div class="step-body"><div class="step-title">MLOps &amp; Deployment</div><div class="step-text">MLFlow model tracking, experiment logging, Docker containerization for reproducibility, and hyperparameter tuning history.</div></div></div>
+      <div class="project-card">
+        <div class="project-icon">📊</div>
+        <div class="project-tag">ML · PYTHON · SCIKIT-LEARN</div>
+        <h3>Telecom Churn Prediction</h3>
+        <p>End-to-end ML pipeline with Decision Tree, Random Forest, and KNN. Full EDA, 10-fold cross-validation, ROC-AUC evaluation, MLFlow tracking, and Docker deployment.</p>
+        <div class="project-metrics">
+          <div><div class="m-num">85%</div><div class="m-label">Accuracy</div></div>
+          <div><div class="m-num">0.88</div><div class="m-label">ROC-AUC</div></div>
+        </div>
+        <div class="stack-row">
+          <span class="stack-chip">Python</span><span class="stack-chip">Scikit-learn</span><span class="stack-chip">Pandas</span><span class="stack-chip">MLFlow</span>
+        </div>
+        <div class="project-links">
+          <a href="https://telecom-customer-churn-zvmeytufoxmmkfcss4hdnw.streamlit.app/" target="_blank">Live Demo ↗</a>
+          <a href="https://github.com/Narendrareddy5c4/Telecom-Customer-Churn" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🧠</div>
+        <div class="project-tag">LANGCHAIN · RAG · GPT API · FAISS</div>
+        <h3>GenAI Document Intelligence</h3>
+        <p>Enterprise RAG pipeline for document Q&amp;A with FAISS vector search, prompt injection guardrails, hallucination reduction, and LangGraph agentic workflows.</p>
+        <div class="project-metrics">
+          <div><div class="m-num">35%</div><div class="m-label">Faster Processing</div></div>
+          <div><div class="m-num">RAG</div><div class="m-label">Architecture</div></div>
+        </div>
+        <div class="stack-row">
+          <span class="stack-chip">LangChain</span><span class="stack-chip">GPT API</span><span class="stack-chip">FAISS</span><span class="stack-chip">RAG</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🪑</div>
+        <div class="project-tag">PYTHON · FLASK · SQLITE · OAUTH2</div>
+        <h3>ChairStore — Full Stack App</h3>
+        <p>Full-stack e-commerce catalog with Google OAuth2 auth, CRUD operations, REST JSON API endpoints, and Vagrant/VirtualBox deployment. Udacity FSND Capstone.</p>
+        <div class="project-metrics">
+          <div><div class="m-num">3</div><div class="m-label">JSON Endpoints</div></div>
+          <div><div class="m-num">CRUD</div><div class="m-label">Full Ops</div></div>
+        </div>
+        <div class="stack-row">
+          <span class="stack-chip">Python</span><span class="stack-chip">Flask</span><span class="stack-chip">SQLite</span><span class="stack-chip">Google OAuth2</span>
+        </div>
+        <div class="project-links">
+          <a href="https://chairstore.onrender.com/" target="_blank">Live Demo ↗</a>
+          <a href="https://github.com/Narendrareddy5c4/ChairStore" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">⚛️</div>
+        <div class="project-tag">REACT.JS · TYPESCRIPT · HOOKS</div>
+        <h3>React Learning Projects</h3>
+        <p>Collection of production-quality React apps covering Hooks, component architecture, React Router SPA navigation, state management, and responsive ES6+ patterns.</p>
+        <div class="stack-row">
+          <span class="stack-chip">React.js</span><span class="stack-chip">TypeScript</span><span class="stack-chip">React Router</span><span class="stack-chip">Hooks</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Narendrareddy5c4/ReactLearning" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+
     </div>
-  </div>
-  <div class="pd-section">
-    <div class="pd-sec-title">Results</div>
-    <div class="result-grid">
-      <div class="res-card rc1"><div class="res-val rv1">85%</div><div class="res-label">RF Accuracy</div></div>
-      <div class="res-card rc2"><div class="res-val rv2">0.88</div><div class="res-label">ROC-AUC</div></div>
-      <div class="res-card rc3"><div class="res-val rv3">RF</div><div class="res-label">Best Model</div></div>
-      <div class="res-card rc4"><div class="res-val rv4">10x</div><div class="res-label">Cross-Val Folds</div></div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" style="background:var(--surface);">
+    <div class="section-head">
+      <div class="eyebrow">Skills</div>
+      <h2>My tech stack.</h2>
     </div>
-  </div>
-  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;">
-    <a class="btn-primary" href="https://github.com/Narendrareddy5c4/Telecom-Customer-Churn" target="_blank">View on GitHub ↗</a>
-    <div class="btn-outline" style="cursor:pointer;" onclick="goBack()">← Back</div>
-  </div>
-</div>
-<footer><p>Built by <span>Narendra Reddy</span> · AI/ML Engineer</p></footer>
-</div>
-
-<!-- ═══════════════ DETAIL: GENAI ═══════════════ -->
-<div class="page" id="page-genai">
-<div class="pd-wrap">
-  <div class="back-btn" onclick="goBack()">← Back</div>
-  <div class="pd-eyebrow sl2">Generative AI · LangChain · RAG · GPT API · FAISS</div>
-  <h1 class="pd-title">GenAI Document<br>Intelligence System</h1>
-  <p class="pd-desc">A production-grade RAG pipeline enabling enterprise document Q&amp;A with responsible AI guardrails — hallucination reduction, prompt injection protection, FAISS vector search, and LangGraph agentic workflows.</p>
-  <div class="pd-stats">
-    <div class="pd-stat"><div class="pd-stat-val pv2">35%</div><div class="pd-stat-label">Faster Processing</div></div>
-    <div class="pd-stat"><div class="pd-stat-val pv3">RAG</div><div class="pd-stat-label">Architecture</div></div>
-    <div class="pd-stat"><div class="pd-stat-val pv1">FAISS</div><div class="pd-stat-label">Vector Store</div></div>
-  </div>
-  <div class="pd-tags"><span class="tag t2">LangChain</span><span class="tag t2">LangGraph</span><span class="tag t2">GPT-4 API</span><span class="tag t2">Gemini API</span><span class="tag t1">FAISS</span><span class="tag t1">Python</span><span class="tag t3">RAG</span><span class="tag t3">HuggingFace</span></div>
-  <div class="pd-section">
-    <div class="pd-sec-title">Architecture</div>
-    <div class="feat-grid">
-      <div class="feat f1"><div class="feat-icon">📄</div><div class="feat-title">Document Ingestion</div><div class="feat-text">Ingest enterprise documents. Chunk, embed, and index into FAISS vector store for semantic similarity search at scale.</div></div>
-      <div class="feat f2"><div class="feat-icon">🔍</div><div class="feat-title">RAG Retrieval</div><div class="feat-text">Retrieve top-K relevant chunks via FAISS cosine similarity. Feed context + query to LLM for grounded, accurate responses.</div></div>
-      <div class="feat f3"><div class="feat-icon">🛡️</div><div class="feat-title">Responsible AI Guardrails</div><div class="feat-text">Prompt injection detection, hallucination reduction, output moderation, and access control — responsible AI first-class.</div></div>
-      <div class="feat f4"><div class="feat-icon">🤖</div><div class="feat-title">LangGraph Agents</div><div class="feat-text">Multi-step agentic workflows — conditional branching, tool use, and multi-turn conversation memory.</div></div>
-      <div class="feat f5"><div class="feat-icon">⚡</div><div class="feat-title">Multi-LLM Support</div><div class="feat-text">Pluggable backend — GPT-4, Gemini, or LLaMA via a unified LangChain interface with streaming support.</div></div>
+    <div class="skills-grid reveal-stagger">
+      <div class="skill-group">
+        <h4>Generative AI &amp; LLMs</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">LangChain</span><span class="skill-tag">LangGraph</span><span class="skill-tag">RAG Pipelines</span>
+          <span class="skill-tag">GPT-4 API</span><span class="skill-tag">Gemini</span><span class="skill-tag">LLaMA</span>
+          <span class="skill-tag">HuggingFace</span><span class="skill-tag">Prompt Engineering</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>ML &amp; Data Science</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Scikit-learn</span><span class="skill-tag">TensorFlow</span><span class="skill-tag">Pandas</span>
+          <span class="skill-tag">NumPy</span><span class="skill-tag">PySpark</span><span class="skill-tag">MLFlow</span><span class="skill-tag">Jupyter</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Cloud AI Platforms</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS Bedrock</span><span class="skill-tag">SageMaker</span><span class="skill-tag">GCP Vertex AI</span>
+          <span class="skill-tag">Azure Databricks</span><span class="skill-tag">BigQuery</span><span class="skill-tag">Azure ML Studio</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Big Data &amp; Databases</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">PySpark</span><span class="skill-tag">Kafka</span><span class="skill-tag">Snowflake</span>
+          <span class="skill-tag">BigQuery</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">Oracle DB</span><span class="skill-tag">Cosmos DB</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Backend &amp; APIs</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Java 8–21</span><span class="skill-tag">Python</span><span class="skill-tag">Spring Boot</span>
+          <span class="skill-tag">Flask</span><span class="skill-tag">REST APIs</span><span class="skill-tag">OAuth 2.0</span><span class="skill-tag">JWT</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>DevOps &amp; CI/CD</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes</span><span class="skill-tag">Terraform</span>
+          <span class="skill-tag">GitHub Actions</span><span class="skill-tag">Jenkins</span><span class="skill-tag">Azure DevOps</span>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="pd-section">
-    <div class="pd-sec-title">Pipeline</div>
-    <div class="steps">
-      <div class="step"><div class="step-num sn-a">1</div><div class="step-body"><div class="step-title">Document Loading &amp; Chunking</div><div class="step-text">Load enterprise documents → split into overlapping chunks → generate embeddings using OpenAI or HuggingFace models.</div></div></div>
-      <div class="step"><div class="step-num sn-b">2</div><div class="step-body"><div class="step-title">Vector Store Indexing</div><div class="step-text">Store embeddings in FAISS for fast nearest-neighbor retrieval.<div class="code-block">from langchain.vectorstores import FAISS
-from langchain.embeddings import OpenAIEmbeddings
+  </section>
 
-vectorstore = FAISS.from_documents(docs, OpenAIEmbeddings())
-retriever = vectorstore.as_retriever(search_kwargs={"k": 5})</div></div></div></div>
-      <div class="step"><div class="step-num sn-c">3</div><div class="step-body"><div class="step-title">Prompt Engineering &amp; Guardrails</div><div class="step-text">System prompts enforce grounded answers, reject prompt injection, moderate outputs. Hallucination reduced via strict retrieval-only context.</div></div></div>
-      <div class="step"><div class="step-num sn-d">4</div><div class="step-body"><div class="step-title">Response Generation</div><div class="step-text">Feed retrieved context + query to GPT-4/Gemini via LangChain RetrievalQA. Return grounded, cited answers with source attribution.</div></div></div>
+  <!-- Contact -->
+  <section id="contact">
+    <div class="contact-card reveal">
+      <h2>Let's build something remarkable.</h2>
+      <p>Open to Senior AI/ML Engineer, Generative AI, and Data Engineering roles — Irving, TX or remote.</p>
+      <div class="contact-actions">
+        <a class="btn btn-filled" href="mailto:narendramangunuru@gmail.com">✉ Email Me</a>
+        <a class="btn btn-outline" href="tel:9133888995">☎ 913-388-8995</a>
+        <a class="btn btn-outline" href="https://www.linkedin.com/in/narendrareddy-mang-81746924b/" target="_blank">in LinkedIn ↗</a>
+        <a class="btn btn-outline" href="https://github.com/Narendrareddy5c4" target="_blank">◈ GitHub ↗</a>
+      </div>
     </div>
-  </div>
-  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;">
-    <div class="btn-outline" style="cursor:pointer;" onclick="goBack()">← Back</div>
-  </div>
-</div>
-<footer><p>Built by <span>Narendra Reddy</span> · AI/ML Engineer</p></footer>
-</div>
+  </section>
 
-<!-- ═══════════════ DETAIL: CHAIRSTORE ═══════════════ -->
-<div class="page" id="page-chairstore">
-<div class="pd-wrap">
-  <div class="back-btn" onclick="goBack()">← Back</div>
-  <div class="pd-eyebrow sl3">Python · Flask · SQLite · Google OAuth2 · REST API</div>
-  <h1 class="pd-title">ChairStore <a class="btn-sm bsm-ghost live-demo"
-       href="https://chairstore.onrender.com/"
-       target="_blank"
-       onclick="event.stopPropagation()">
-       <span class="live-dot"></span>
-       Live Demo ↗
-    </a>
-    <br>Full Stack Web App</h1>
-  <p class="pd-desc">A full-stack e-commerce catalog for chair categories and products. Built with Python/Flask, SQLite, Google OAuth2 authentication, and REST JSON API endpoints. Udacity Full Stack Nanodegree Capstone.</p>
-  <div class="pd-stats">
-    <div class="pd-stat"><div class="pd-stat-val pv3">3</div><div class="pd-stat-label">JSON Endpoints</div></div>
-    <div class="pd-stat"><div class="pd-stat-val pv1">OAuth2</div><div class="pd-stat-label">Google Auth</div></div>
-    <div class="pd-stat"><div class="pd-stat-val pv2">CRUD</div><div class="pd-stat-label">Full Operations</div></div>
-  </div>
-  <div class="pd-tags"><span class="tag t3">Python</span><span class="tag t3">Flask</span><span class="tag t3">SQLite</span><span class="tag t3">Google OAuth2</span><span class="tag t2">HTML</span><span class="tag t2">CSS</span><span class="tag t1">Vagrant</span><span class="tag t1">VirtualBox</span></div>
-  <div class="pd-section">
-    <div class="pd-sec-title">Features</div>
-    <div class="feat-grid">
-      <div class="feat f1"><div class="feat-icon">🔐</div><div class="feat-title">Google OAuth2 Auth</div><div class="feat-text">Secure login via Google OAuth2. Users can add, edit, and delete only their own categories and items.</div></div>
-      <div class="feat f2"><div class="feat-icon">🗂️</div><div class="feat-title">Full CRUD</div><div class="feat-text">Create, read, update, delete for chair categories and products with owner-based access control.</div></div>
-      <div class="feat f3"><div class="feat-icon">🔌</div><div class="feat-title">REST JSON API</div><div class="feat-text">Three JSON endpoints expose catalog data: all categories, all items, and items by category.</div></div>
-      <div class="feat f4"><div class="feat-icon">🖥️</div><div class="feat-title">Vagrant Deployment</div><div class="feat-text">Reproducible local environment using Vagrant + VirtualBox. Runs at localhost:5000.</div></div>
-    </div>
-  </div>
-  <div class="pd-section">
-    <div class="pd-sec-title">API Endpoints &amp; Setup</div>
-    <div class="code-block">GET /chairs/category/json          → All chair categories
-GET /chairs/all.json               → All chairs across all categories
-GET /chairs/category/3/items.json  → Items in category 3
+  <footer>
+    Designed &amp; built by Narendra Reddy · AI/ML Engineer · Irving, TX
+  </footer>
 
-# Setup:
-$ vagrant up && vagrant ssh
-$ cd /vagrant/ChairStore
-$ python Catalog.py  →  http://localhost:5000</div>
-  </div>
-  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;">
-    <a class="btn-primary" href="https://github.com/Narendrareddy5c4/ChairStore" target="_blank">View on GitHub ↗</a>
-    <div class="btn-outline" style="cursor:pointer;" onclick="goBack()">← Back</div>
-  </div>
-</div>
-<footer><p>Built by <span>Narendra Reddy</span> · AI/ML Engineer</p></footer>
-</div>
+  <!-- Floating action button: back to top -->
+  <button class="fab" id="fab" aria-label="Back to top">↑</button>
 
-<!-- ═══════════════ DETAIL: REACT ═══════════════ -->
-<div class="page" id="page-react">
-<div class="pd-wrap">
-  <div class="back-btn" onclick="goBack()">← Back</div>
-  <div class="pd-eyebrow sl4">React.js · TypeScript · Hooks · React Router · ES6+</div>
-  <h1 class="pd-title">React Learning<br>Projects</h1>
-  <p class="pd-desc">A collection of production-quality React applications built to master modern frontend patterns — state management, component architecture, SPA routing, and responsive design.</p>
-  <div class="pd-tags"><span class="tag t1">React.js</span><span class="tag t1">TypeScript</span><span class="tag t1">JavaScript ES6+</span><span class="tag t2">React Router</span><span class="tag t2">useState</span><span class="tag t2">useEffect</span><span class="tag t3">CSS Grid</span><span class="tag t3">Flexbox</span></div>
-  <div class="pd-section">
-    <div class="pd-sec-title">What's Covered</div>
-    <div class="feat-grid">
-      <div class="feat f1"><div class="feat-icon">🪝</div><div class="feat-title">React Hooks</div><div class="feat-text">useState, useEffect, useContext, useReducer — practical implementations with clear separation of concerns.</div></div>
-      <div class="feat f2"><div class="feat-icon">🧩</div><div class="feat-title">Component Architecture</div><div class="feat-text">Functional and class components, reusable patterns, prop drilling vs context, and component composition.</div></div>
-      <div class="feat f3"><div class="feat-icon">🗺️</div><div class="feat-title">SPA Navigation</div><div class="feat-text">React Router v6 — nested routes, dynamic params, protected routes, and navigation state management.</div></div>
-      <div class="feat f4"><div class="feat-icon">📱</div><div class="feat-title">Responsive UI</div><div class="feat-text">CSS Grid, Flexbox, mobile-first layouts with accessible, semantic HTML and modern ES6+ patterns.</div></div>
-    </div>
-  </div>
-  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;">
-    <a class="btn-primary" href="https://github.com/Narendrareddy5c4/ReactLearning" target="_blank">View on GitHub ↗</a>
-    <div class="btn-outline" style="cursor:pointer;" onclick="goBack()">← Back</div>
-  </div>
-</div>
-<footer><p>Built by <span>Narendra Reddy</span> · AI/ML Engineer</p></footer>
-</div>
+  <script>
+    // ---- Material ripple effect on buttons ----
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function(e){
+        const rect = this.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        const size = Math.max(rect.width, rect.height) * 1.6;
+        ripple.className = 'ripple';
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+        ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
 
-<script>
-const techs=[
-  {t:'Python',c:'tc1'},{t:'LangChain',c:'tc2'},{t:'LangGraph',c:'tc3'},{t:'RAG Pipelines',c:'tc4'},{t:'GPT-4 API',c:'tc5'},
-  {t:'Gemini API',c:'tc1'},{t:'PySpark',c:'tc2'},{t:'Scikit-learn',c:'tc3'},{t:'TensorFlow',c:'tc4'},{t:'MLFlow',c:'tc5'},
-  {t:'AWS Bedrock',c:'tc1'},{t:'GCP Vertex AI',c:'tc2'},{t:'Azure Databricks',c:'tc3'},{t:'Kafka',c:'tc4'},{t:'Snowflake',c:'tc5'},
-  {t:'BigQuery',c:'tc1'},{t:'Docker',c:'tc2'},{t:'Kubernetes',c:'tc3'},{t:'React.js',c:'tc4'},{t:'TypeScript',c:'tc5'},
-  {t:'Spring Boot',c:'tc1'},{t:'Java 21',c:'tc2'},{t:'FAISS',c:'tc3'},{t:'HuggingFace',c:'tc4'},{t:'Terraform',c:'tc5'}
-];
-const track=document.getElementById('ticker');
-track.innerHTML=[...techs,...techs].map(({t,c})=>`<span class="ticker-item ${c}">${t}<span class="ticker-sep">·</span></span>`).join('');
-let prevPage='home';
-function showPage(n){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+n).classList.add('active');
-  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
-  const nl=document.getElementById('nav-'+n);
-  if(nl)nl.classList.add('active');
-  window.scrollTo({top:0,behavior:'instant'});
-  prevPage=n;
-}
-function showProjectDetail(n){
-  prevPage=document.querySelector('.page.active').id.replace('page-','');
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+n).classList.add('active');
-  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
-  document.getElementById('nav-projects').classList.add('active');
-  window.scrollTo({top:0,behavior:'instant'});
-}
-function goBack(){showPage(prevPage||'projects');}
-function scrollContact(){
-  showPage('home');
-  setTimeout(()=>document.getElementById('contact-anchor').scrollIntoView({behavior:'smooth'}),100);
-}
-</script>
+    // ---- Scroll-spy: highlight active nav link ----
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = [...navLinks].map(a => document.querySelector(a.getAttribute('href')));
+    function updateActiveNav(){
+      let current = sections[0];
+      const offset = 120;
+      sections.forEach(sec => {
+        if (sec && sec.getBoundingClientRect().top - offset <= 0) current = sec;
+      });
+      navLinks.forEach(a => a.classList.toggle('active', document.querySelector(a.getAttribute('href')) === current));
+    }
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
+
+    // ---- Scroll reveal animations ----
+    const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // ---- FAB: show after scrolling, scroll to top on click ----
+    const fab = document.getElementById('fab');
+    window.addEventListener('scroll', () => {
+      fab.classList.toggle('show', window.scrollY > 400);
+    });
+    fab.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+
 </body>
 </html>
